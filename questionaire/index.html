@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootcamp Questionnaire | I-STARTUP</title>
+    <meta name="description" content="Quick questionnaire to help us group participants by skill level and learning style for the best bootcamp experience.">
+    
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" as="style">
+    
+    <!-- Tailwind with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        gray: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+                
+        .gradient-text {
+            background: linear-gradient(90deg, #0ea5e9 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(226, 232, 240, 0.342) 1px, transparent 1.5px),
+                linear-gradient(90deg, rgba(226, 232, 240, 0.342) 1px, transparent 1.5px);
+            background-size: 24px 24px;
+            z-index: -1;
+            pointer-events: none;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #0f172a;
+                color: #f8fafc;
+            }
+            body::before {
+                background-image:
+                    linear-gradient(rgba(30, 41, 59, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(30, 41, 59, 0.1) 1px, transparent 1px);
+            }
+        }
+        .section-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.2s ease;
+        }
+        .section-card:hover{
+            background: rgb(15, 23, 42);
+            box-shadow: 0 4px 30px -5px rgba(2, 52, 170, 0.829);
+            border: 1px solid rgba(30, 41, 59, 0.5);
+        }
+        .input-field {
+            transition: all 0.2s ease;
+        }
+        .input-field:focus {
+            border-color: #000000;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+        }
+        .checkbox-label, .radio-label {
+            transition: all 0.2s ease;
+        }
+        .checkbox-label:hover, .radio-label:hover {
+            background-color: rgba(14, 165, 233, 0.05);
+        }
+        .dark .checkbox-label:hover, .dark .radio-label:hover {
+            background-color: rgba(14, 165, 233, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <main class="max-w-3xl mx-auto p-6 sm:p-8 w-full">
+        <!-- Hero Section -->
+        <section class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl font-heading font-bold leading-tight">
+                        Admission <span class="gradient-text">Questionnaire</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">
+                               This quick form helps us group participants by skill level and learning style so everyone gets the best experience. 
+                    </p>
+                </div>
+                
+                <div class="relative animate-fade-in animate-delay-1">
+                    <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary-400 rounded-full mix-blend-multiply dark:mix-blend-screen opacity-20 filter blur-2xl animate-float"></div>
+                    <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-purple-400 rounded-full mix-blend-multiply dark:mix-blend-screen opacity-20 filter blur-2xl animate-float animate-delay-2"></div>
+                    
+                    
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary-400 rounded-full mix-blend-multiply dark:mix-blend-screen opacity-20 filter blur-2xl animate-float"></div>
+                    <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-purple-400 rounded-full mix-blend-multiply dark:mix-blend-screen opacity-20 filter blur-2xl animate-float" style="animation-delay: 2s;"></div>
+                    
+                    <div class="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl">
+                        <div class="p-3 border-b border-gray-200 dark:border-gray-700 flex items-center space-x-2 bg-gray-50 dark:bg-gray-700">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-4">
+                                <div class="text-orange-500 font-mono text-sm mb-1">// 2 Minutes</div>
+                                <div class="flex space-x-3 mb-3">
+                                    <div class="w-20 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                    <div class="w-12 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex space-x-3">
+                                    <div class="w-6 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                    <div class="w-32 h-2 bg-primary-100 dark:bg-primary-900 rounded"></div>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <div class="w-6 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                    <div class="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="text-green-500 font-mono text-sm mb-1 p-1">// Guarantee</div>
+                            <div class="space-y-2">
+                                <div class="flex space-x-3">
+                                    <div class="text-primary-500 font-mono text-sm">Best Learning Experience</div><br>
+                                    <div class="w-6 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <div class="w-6 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                    <div class="w-28 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <div class="w-6 h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                    <div class="w-16 h-2 bg-primary-100 dark:bg-primary-900 rounded"></div>
+                                    <div class="w-12 h-2 bg-primary-100 dark:bg-primary-900 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- centered and underlined on hover -->
+            <h4 class="text-center hover:underline underline-color-red-500 mb-1 p-5"><strong>Be honest — there are no wrong answers.</strong></h4>
+        </section>
+        <form class="space-y-8" method="post" id="questionnaire-form">
+            <!-- Question 1 -->
+            <div>
+                <label for="motivation" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                    1. Why do you want to learn web development now? <span class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                </label>
+                <textarea id="motivation" class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none" rows="3" placeholder="Your answer..." required></textarea>
+            </div>
+            
+            <!-- Question 2 -->
+            <div>
+                <label for="goals" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                    2. In two weeks, what would you be proud to have built or learned? <span class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                </label>
+                <textarea id="goals" class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none" rows="3" placeholder="Your answer..." required></textarea>
+            </div>
+            
+            <!-- Question 3 -->
+            <div>
+                <label class="block text-gray-700 dark:text-gray-300 mb-3 font-medium">
+                    3. How do you usually learn something new? <span class="text-gray-500 dark:text-gray-500">(Choose all that apply)</span>
+                </label>
+                <div class="space-y-2">
+                    <label class="checkbox-label flex items-center p-3 rounded-lg cursor-pointer">
+                        <input type="checkbox" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                        <span class="ml-3">Video tutorials</span>
+                    </label>
+                    <label class="checkbox-label flex items-center p-3 rounded-lg cursor-pointer">
+                        <input type="checkbox" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                        <span class="ml-3">Written guides</span>
+                    </label>
+                    <label class="checkbox-label flex items-center p-3 rounded-lg cursor-pointer">
+                        <input type="checkbox" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                        <span class="ml-3">Hands-on practice</span>
+                    </label>
+                    <label class="checkbox-label flex items-center p-3 rounded-lg cursor-pointer">
+                        <input type="checkbox" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                        <span class="ml-3">Talking with others</span>
+                    </label>
+                    <div class="flex items-center pl-8 mt-1">
+                        <input type="checkbox" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                        <span class="ml-3 mr-2">Other:</span>
+                        <input type="text" class="input-field flex-1 bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none" placeholder="Specify">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div>
+                <label for="stuck" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                    4. When you get stuck on code, what's your first step? <span class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                </label>
+                <textarea id="stuck" class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none" rows="2" placeholder="Your answer..." required></textarea>
+            </div>
+            
+            <!-- Question 5 -->
+            <div>
+                <label class="block text-gray-700 dark:text-gray-300 mb-3 font-medium">
+                    5. Rate your current coding experience:
+                </label>
+                <div class="space-y-2">
+                    <label class="radio-label flex items-center p-3 rounded-lg cursor-pointer">
+                        <input type="radio" name="experience" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 focus:ring-primary-500">
+                        <span class="ml-3">None</span>
+                    </label>
+                    <label class="radio-label flex items-center p-3 rounded-lg cursor-pointer">
+                        <input type="radio" name="experience" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 focus:ring-primary-500">
+                        <span class="ml-3">Beginner (HTML/CSS basics)</span>
+                    </label>
+                    <label class="radio-label flex items-center p-3 rounded-lg cursor-pointer">
+                        <input type="radio" name="experience" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 focus:ring-primary-500">
+                        <span class="ml-3">Intermediate (JavaScript, small projects)</span>
+                    </label>
+                    <label class="radio-label flex items-center p-3 rounded-lg cursor-pointer">
+                        <input type="radio" name="experience" class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 focus:ring-primary-500">
+                        <span class="ml-3">Advanced (Frameworks, backend)</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Question 6 -->
+            <div>
+                <label for="steps" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                    6. You need to build a simple website. List 3 steps you'd take. <span class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                </label>
+                <textarea id="steps" class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none" rows="3" placeholder="1. ...\n2. ...\n3. ..." required></textarea>
+            </div>
+            
+            <!-- Question 7 -->
+            <div>
+                <label for="tool" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                    7. You've never used a new tool before. How would you figure it out? <span class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                </label>
+                <textarea id="tool" class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none" rows="3" placeholder="Your answer..." required></textarea>
+            </div>
+            
+            <!-- Question 8 -->
+            <div>
+                <label for="team" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                    8. Have you worked on a team before? What role did you take? <span class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                </label>
+                <textarea id="team" class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none" rows="3" placeholder="Your answer..." required></textarea>
+            </div>
+            
+            <!-- Question 9 -->
+            <div>
+                <label for="disagreements" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                    9. How do you handle disagreements about a solution? <span class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                </label>
+                <textarea id="disagreements" class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none" rows="3" placeholder="Your answer..." required></textarea>
+            </div>
+
+            <!-- Final Message & Submit -->
+            <div class="text-center pt-6">
+                <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6 mb-6">
+                    <p class="text-lg font-medium flex items-center justify-center">
+                        <span class="text-xl mr-2">💬</span> 
+                        <span>Thanks! Your answers will help us place you in the group where you'll learn best.</span>
+                    </p>
+                </div>
+                <button type="submit" class="w-full bg-primary-500 hover:bg-primary-600 text-gray-900 font-medium py-3 px-6 rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                    Submit Questionnaire
+                </button>
+            </div>
+        </form>
+    </main>
+    <script src="script.js"></script>
+    <script src="take-a-look.js"></script>
+</body>
+</html>
