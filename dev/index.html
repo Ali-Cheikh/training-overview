@@ -107,6 +107,11 @@
             }
         }
 
+        /* Add this to your existing styles */
+        #questionnaire-section {
+            display: none;
+        }
+
         .gradient-text {
             background: linear-gradient(90deg, #0ea5e9 0%, #3b82f6 100%);
             -webkit-background-clip: text;
@@ -229,13 +234,21 @@
                             <!-- Dynamic avatars will be inserted here by JavaScript -->
                             <div id="waitlist-avatars" class="flex -space-x-2">
                                 <!-- Fallback avatars (shown while loading or if no data) -->
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-medium">?</div>
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-medium">?</div>
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-medium">?</div>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-medium">
+                                    ?</div>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-medium">
+                                    ?</div>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-medium">
+                                    ?</div>
                             </div>
                         </div>
                         <div class="ml-4 text-gray-600 dark:text-gray-400">
-                            <p>Join <span id="waitlist-count" class="font-medium text-gray-900 dark:text-white">250+</span> developers on the waitlist</p>
+                            <p>Join <span id="waitlist-count"
+                                    class="font-medium text-gray-900 dark:text-white">250+</span> developers on the
+                                waitlist</p>
                         </div>
                     </div>
                 </div>
@@ -607,50 +620,232 @@
                 </div>
             </div>
         </section>
-        <!-- Waitlist Form -->
-        <section id="waitlist" class="py-16 bg-primary-50 dark:bg-primary-900/20"><br>
+
+        <section id="waitlist" class="py-16 bg-primary-50 dark:bg-primary-900/20">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="card rounded-xl p-8 shadow-lg">
-                    <div class="text-center mb-10">
-                        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Join the <span
-                                class="gradient-text">Waitlist</span></h2>
-                        <p class="text-gray-600 dark:text-gray-400">Answer a few questions to help us prepare the
-                            perfect learning experience for you.</p>
+                    <!-- Waitlist Form Section -->
+                    <div id="waitlist-form-section">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Join the <span
+                                    class="gradient-text">Waitlist</span></h2>
+                            <p class="text-gray-600 dark:text-gray-400">We'll contact you when enrollment opens for the
+                                next cohort.</p>
+                        </div>
+
+                        <form id="waitlist-form" class="space-y-6">
+                            <div>
+                                <label for="name"
+                                    class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Name</label>
+                                <input id="name" type="text"
+                                    class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                    placeholder="Your name" required>
+                            </div>
+
+                            <div>
+                                <label for="email"
+                                    class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Email</label>
+                                <input id="email" type="email"
+                                    class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                    placeholder="your@email.com" required>
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Phone
+                                    Number</label>
+                                <input id="phone" type="tel"
+                                    class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                    placeholder="+1 (123) 456-7890">
+                            </div>
+
+                            <div class="pt-4">
+                                <button type="button" id="show-questionnaire-btn"
+                                    class="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 transform hover:-translate-y-0.5">
+                                    Continue to Questionnaire →
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
+                    <!-- Questionnaire Section -->
+                    <div id="questionnaire-section" class="animate-fade-in">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+                            <!-- Questionnaire Form -->
+                            <form id="questionnaire-form" class="space-y-8">
 
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name"
-                                class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Name</label>
-                            <input id="name" type="text"
-                                class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
-                                placeholder="Your name" required>
-                        </div>
-                        <div>
-                            <label for="email"
-                                class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Email</label>
-                            <input id="email" type="email"
-                                class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
-                                placeholder="Your email" required>
-                        </div>
-                        <div class="pt-4 flex flex-col sm:flex-row gap-4">
-                            <!-- Primary Button (Dominant CTA) -->
-                            <button type="submit"
-                                class="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 transform hover:-translate-y-0.5">
-                                Join Waitlist ✨
-                            </button>
+                                <!-- Question 1 -->
+                                <div>
+                                    <label for="motivation"
+                                        class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                                        1. Why do you want to learn web development now? <span
+                                            class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                                    </label>
+                                    <textarea id="motivation"
+                                        class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                        rows="3" placeholder="Your answer..." required></textarea>
+                                </div>
 
-                            <!-- Secondary Button (Clear but Subdued) -->
-                            <a href="questionaire/index.html"
-                                class="inline-block bg-white/90 hover:bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-800 dark:text-gray-200 dark:bg-gray-800/80 dark:border-gray-700 dark:hover:bg-gray-700 font-medium py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transform hover:-translate-y-0.5 text-center">
-                                Continue to Questionnaire →
-                            </a>
-                        </div>
-                    </form>
+                                <!-- Question 2 -->
+                                <div>
+                                    <label for="goals" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                                        2. In two weeks, what would you be proud to have built or learned? <span
+                                            class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                                    </label>
+                                    <textarea id="goals"
+                                        class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                        rows="3" placeholder="Your answer..." required></textarea>
+                                </div>
 
+                                <!-- Question 3 -->
+                                <div>
+                                    <label class="block text-gray-700 dark:text-gray-300 mb-3 font-medium">
+                                        3. How do you usually learn something new? <span
+                                            class="text-gray-500 dark:text-gray-500">(Choose all that apply)</span>
+                                    </label>
+                                    <div class="space-y-2">
+                                        <label class="checkbox-label flex items-center p-3 rounded-lg cursor-pointer">
+                                            <input type="checkbox"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                                            <span class="ml-3">Video tutorials</span>
+                                        </label>
+                                        <label class="checkbox-label flex items-center p-3 rounded-lg cursor-pointer">
+                                            <input type="checkbox"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                                            <span class="ml-3">Written guides</span>
+                                        </label>
+                                        <label class="checkbox-label flex items-center p-3 rounded-lg cursor-pointer">
+                                            <input type="checkbox"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                                            <span class="ml-3">Hands-on practice</span>
+                                        </label>
+                                        <label class="checkbox-label flex items-center p-3 rounded-lg cursor-pointer">
+                                            <input type="checkbox"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                                            <span class="ml-3">Talking with others</span>
+                                        </label>
+                                        <div class="flex items-center pl-8 mt-1">
+                                            <input type="checkbox"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 rounded focus:ring-primary-500">
+                                            <span class="ml-3 mr-2">Other:</span>
+                                            <input type="text"
+                                                class="input-field flex-1 bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none"
+                                                placeholder="Specify">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Question 4 -->
+                                <div>
+                                    <label for="stuck" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                                        4. When you get stuck on code, what's your first step? <span
+                                            class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                                    </label>
+                                    <textarea id="stuck"
+                                        class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                        rows="2" placeholder="Your answer..." required></textarea>
+                                </div>
+
+                                <!-- Question 5 -->
+                                <div>
+                                    <label class="block text-gray-700 dark:text-gray-300 mb-3 font-medium">
+                                        5. Rate your current coding experience:
+                                    </label>
+                                    <div class="space-y-2">
+                                        <label class="radio-label flex items-center p-3 rounded-lg cursor-pointer">
+                                            <input type="radio" name="experience"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 focus:ring-primary-500">
+                                            <span class="ml-3">None</span>
+                                        </label>
+                                        <label class="radio-label flex items-center p-3 rounded-lg cursor-pointer">
+                                            <input type="radio" name="experience"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 focus:ring-primary-500">
+                                            <span class="ml-3">Beginner (HTML/CSS basics)</span>
+                                        </label>
+                                        <label class="radio-label flex items-center p-3 rounded-lg cursor-pointer">
+                                            <input type="radio" name="experience"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 focus:ring-primary-500">
+                                            <span class="ml-3">Intermediate (JavaScript, small projects)</span>
+                                        </label>
+                                        <label class="radio-label flex items-center p-3 rounded-lg cursor-pointer">
+                                            <input type="radio" name="experience"
+                                                class="h-5 w-5 text-primary-500 border-gray-300 dark:border-yellow-400 focus:ring-primary-500">
+                                            <span class="ml-3">Advanced (Frameworks, backend)</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Question 6 -->
+                                <div>
+                                    <label for="steps" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                                        6. You need to build a simple website. List 3 steps you'd take. <span
+                                            class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                                    </label>
+                                    <textarea id="steps"
+                                        class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                        rows="3" placeholder="1. ...\n2. ...\n3. ..." required></textarea>
+                                </div>
+
+                                <!-- Question 7 -->
+                                <div>
+                                    <label for="tool" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                                        7. You've never used a new tool before. How would you figure it out? <span
+                                            class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                                    </label>
+                                    <textarea id="tool"
+                                        class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                        rows="3" placeholder="Your answer..." required></textarea>
+                                </div>
+
+                                <!-- Question 8 -->
+                                <div>
+                                    <label for="team" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                                        8. Have you worked on a team before? What role did you take? <span
+                                            class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                                    </label>
+                                    <textarea id="team"
+                                        class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                        rows="3" placeholder="Your answer..." required></textarea>
+                                </div>
+
+                                <!-- Question 9 -->
+                                <div>
+                                    <label for="disagreements"
+                                        class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                                        9. How do you handle disagreements about a solution? <span
+                                            class="text-gray-500 dark:text-gray-500">(Short answer)</span>
+                                    </label>
+                                    <textarea id="disagreements"
+                                        class="input-field w-full bg-gray-900 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                        rows="3" placeholder="Your answer..." required></textarea>
+                                </div>
+
+                                <!-- Final Message & Submit -->
+                                <div class="bg-primary-50 dark:bg-primary-900/20 rounded-lg p-6 mb-6">
+                                    <p class="text-lg font-medium flex items-center justify-center">
+                                        <span class="text-xl mr-2">💬</span>
+                                        <span>Thanks! Your answers will help us place you in the group where you'll
+                                            learn
+                                            best.</span>
+                                    </p>
+                                </div>
+
+                                <div class="pt-6 flex flex-col sm:flex-row gap-4">
+                                    <!-- Back Button -->
+                                    <button type="button" id="back-to-waitlist"
+                                        class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium py-3 px-6 rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">
+                                        ← Back to Waitlist
+                                    </button>
+
+                                    <!-- Submit Button -->
+                                    <button type="submit"
+                                        class="flex-1 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2">
+                                        Submit Application
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </section>
 
         <!-- FAQ Section -->
@@ -811,7 +1006,71 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const waitlistForm = document.getElementById('waitlist-form');
+            const questionnaireForm = document.getElementById('questionnaire-form');
+            const waitlistSection = document.getElementById('waitlist-form-section');
+            const questionnaireSection = document.getElementById('questionnaire-section');
+            const showQuestionnaireBtn = document.getElementById('show-questionnaire-btn');
+            const backToWaitlistBtn = document.getElementById('back-to-waitlist');
 
+            // Show questionnaire when button is clicked
+            showQuestionnaireBtn.addEventListener('click', function () {
+                // Validate waitlist form first
+                if (waitlistForm.checkValidity()) {
+                    waitlistSection.style.display = 'none';
+                    questionnaireSection.style.display = 'block';
+
+                    // Scroll to the questionnaire section
+                    questionnaireSection.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Show validation errors if form isn't complete
+                    waitlistForm.reportValidity();
+                }
+            });
+
+            // Go back to waitlist form
+            backToWaitlistBtn.addEventListener('click', function () {
+                questionnaireSection.style.display = 'none';
+                waitlistSection.style.display = 'block';
+
+                // Scroll back to waitlist section
+                waitlistSection.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Handle final form submission
+            questionnaireForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Validate questionnaire form
+                if (questionnaireForm.checkValidity()) {
+                    // Collect all form data
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        motivation: document.getElementById('motivation').value,
+                        goals: document.getElementById('goals').value,
+                        experience: document.querySelector('input[name="experience"]:checked')?.value
+                    };
+
+                    // Here you would typically send the data to your server
+                    console.log('Form data submitted:', formData);
+
+                    // Show success message
+                    alert('Thank you for your application! We will be in touch soon.');
+
+                    // You could reset the forms here if needed
+                    // waitlistForm.reset();
+                    // questionnaireForm.reset();
+                } else {
+                    // Show validation errors if questionnaire isn't complete
+                    questionnaireForm.reportValidity();
+                }
+            });
+        });
+    </script>
     <script>
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
