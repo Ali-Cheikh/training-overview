@@ -224,18 +224,15 @@
                             View Curriculum
                         </a>
                     </div>
+
                     <div class="flex items-center pt-4">
                         <div class="flex -space-x-2">
-                            <!-- Dynamic avatars will be inserted here by JavaScript -->
-                            <div id="waitlist-avatars" class="flex -space-x-2">
-                                <!-- Fallback avatars (shown while loading or if no data) -->
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-medium">?</div>
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-medium">?</div>
-                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-medium">?</div>
-                            </div>
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600"></div>
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600"></div>
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500"></div>
                         </div>
                         <div class="ml-4 text-gray-600 dark:text-gray-400">
-                            <p>Join <span id="waitlist-count" class="font-medium text-gray-900 dark:text-white">250+</span> developers on the waitlist</p>
+                            <p>Join <span class="font-medium text-gray-900 dark:text-white">15+</span> is the limit on waitlist</p>
                         </div>
                     </div>
                 </div>
@@ -498,42 +495,52 @@
         </section>
 
         <!-- Waitlist Form -->
-        <section id="waitlist" class="py-16 bg-primary-50 dark:bg-primary-900/20"><br>
+
+        <section id="waitlist" class="py-16 bg-primary-50 dark:bg-primary-900/20">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="card rounded-xl p-8 shadow-lg">
-                    <div class="text-center mb-10">
-                        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Join the <span
-                                class="gradient-text">Waitlist</span></h2>
-                        <p class="text-gray-600 dark:text-gray-400">Be the first to enroll in this AI & Notion
-                            productivity course.</p>
-                    </div>
+                    <!-- Waitlist Form Section -->
+                    <div id="waitlist-form-section">
+                        <div class="text-center mb-10">
+                            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Join the <span
+                                    class="gradient-text">Waitlist</span></h2>
+                            <p class="text-gray-600 dark:text-gray-400">We'll contact you when enrollment opens for the
+                                next cohort.</p>
+                        </div>
 
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name"
-                                class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Name</label>
-                            <input id="name" type="text"
-                                class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
-                                placeholder="Your name" required>
-                        </div>
-                        <div>
-                            <label for="email"
-                                class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Email</label>
-                            <input id="email" type="email"
-                                class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
-                                placeholder="Your email" required>
-                        </div>
-                        <div class="pt-4 flex flex-col sm:flex-row gap-4">
-                            <button type="submit"
-                                class="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 transform hover:-translate-y-0.5">
-                                Join Waitlist ✨
-                            </button>
-                            <a href="#curriculum"
-                                class="inline-block bg-white/90 hover:bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-800 dark:text-gray-200 dark:bg-gray-800/80 dark:border-gray-700 dark:hover:bg-gray-700 font-medium py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transform hover:-translate-y-0.5 text-center">
-                                See Full Syllabus →
-                            </a>
-                        </div>
-                    </form>
+                        <form id="waitlist-form" class="space-y-6">
+                            <div>
+                                <label for="name"
+                                    class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Name</label>
+                                <input id="name" type="text"
+                                    class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                    placeholder="Your name" required>
+                            </div>
+
+                            <div>
+                                <label for="email"
+                                    class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Email</label>
+                                <input id="email" type="email"
+                                    class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                    placeholder="your@email.com" required>
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Phone
+                                    Number</label>
+                                <input id="phone" type="tel"
+                                    class="input-field w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none"
+                                    placeholder="+1 (123) 456-7890">
+                            </div>
+
+                            <div class="pt-4">
+                                <button type="button" id="show-questionnaire-btn"
+                                    class="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 transform hover:-translate-y-0.5">
+                                    Continue to Questionnaire →
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -667,6 +674,36 @@
             </div>
         </div>
     </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const waitlistForm = document.getElementById('waitlist-form');
+    const showQuestionnaireBtn = document.getElementById('show-questionnaire-btn');
+
+    if (!waitlistForm || !showQuestionnaireBtn) return;
+
+    showQuestionnaireBtn.addEventListener('click', function () {
+        // Validate waitlist form first
+        if (!waitlistForm.checkValidity()) {
+            waitlistForm.reportValidity();
+            return;
+        }
+
+        const name = document.getElementById('name')?.value.trim() || '';
+        const email = document.getElementById('email')?.value.trim() || '';
+        const phone = document.getElementById('phone')?.value.trim() || '';
+
+        // Build query string safely
+        const params = new URLSearchParams();
+        if (name) params.set('name', name);
+        if (email) params.set('email', email);
+        if (phone) params.set('phone', phone);
+
+        // Navigate to the questionnaire page inside the "questionnaire" folder
+        // Adjust the path if your file is named differently (e.g. questionnaire.html)
+        window.location.href = 'questionnaire/' + (params.toString() ? '?' + params.toString() : '');
+    });
+});
+</script>
 
     <script>
         // Smooth scrolling for anchor links
