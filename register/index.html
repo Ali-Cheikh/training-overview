@@ -150,6 +150,7 @@
                         nameFr: "Forfait complet (4 séances)",
                         price: "150 DT",
                         originalPrice: "200 DT",
+                        dates: "1 week",
                         discount: "-25%",
                         modules: ["Arduino & Electronics", "BBC Micro:bit", "MIT App Inventor", "AI & 3D Modeling", "Final robot project"]
                     },
@@ -173,18 +174,21 @@
                         nameEn: "CapCut Pro — Video Editing",
                         nameFr: "CapCut Pro — Montage vidéo",
                         price: "200 DT",
+                        dates: "1 week",
                         modules: ["CapCut interface & timeline", "Effects, transitions & subtitles", "Green screen & export", "Final video project"]
                     },
                     canva: {
                         nameEn: "Canva Design",
                         nameFr: "Canva — Design graphique",
                         price: "200 DT",
+                        dates: "1 week",
                         modules: ["Design basics & branding", "Social media posts & stories", "Presentations & animations", "Canva AI tools", "Final design portfolio"]
                     },
                     ai: {
                         nameEn: "AI Content Strategy",
                         nameFr: "Stratégie de contenu IA",
                         price: "200 DT",
+                        dates: "1 week",
                         modules: ["Content strategy with AI", "Audience & brand identity", "Idea generation & calendar", "Scripts & multi-platform content", "Final content project"]
                     }
                 }
@@ -207,24 +211,28 @@
                         nameEn: "Python Bootcamp",
                         nameFr: "Bootcamp Python",
                         price: "250 DT",
+                        date: "1 week",
                         modules: ["Variables, logic & loops", "Functions & problem solving", "Turtle graphics & games", "First Python app project"]
                     },
                     vibe: {
                         nameEn: "Vibe Coding",
                         nameFr: "Programmation créative",
                         price: "250 DT",
+                        date: "1 week",
                         modules: ["Creative coding fundamentals", "AI-assisted art & sound", "Interactive projects", "Mini hackathon"]
                     },
                     prompt: {
                         nameEn: "Prompt Engineering",
                         nameFr: "Ingénierie des prompts",
                         price: "250 DT",
+                        date: "1 week",
                         modules: ["AI prompt fundamentals", "Chatbot building", "LLM optimization", "Applied prompt projects"]
                     },
                     ml: {
                         nameEn: "Machine Learning",
                         nameFr: "Apprentissage automatique",
                         price: "300 DT",
+                        date: "2 week",
                         modules: ["Data patterns & visualization", "Train your first model", "AI ethics & bias", "Mini ML project"]
                     }
                 }
@@ -313,6 +321,7 @@
                         <div class="mt-2 flex items-baseline gap-2 flex-wrap">
                             <span class="text-2xl font-bold text-primary-600 dark:text-primary-400">${price}</span>
                             ${originalPrice ? `<span class="text-sm text-gray-400 line-through">${originalPrice}</span>` : ''}
+                            ${track.dates ? `<span class="text-xs text-gray-500 dark:text-gray-400 mt-2">${track.dates}</span>` : ''}
                         </div>
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1"><i class="fas fa-check-circle text-primary-500 text-xs"></i> ${currentLang === 'fr' ? 'Cliquez pour sélectionner' : 'Click to select'}</p>
                     </div>
