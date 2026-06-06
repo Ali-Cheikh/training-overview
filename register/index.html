@@ -10,6 +10,8 @@
     <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -44,13 +46,35 @@
         input:focus, select:focus, textarea:focus { border-color: #0ea5e9; outline: none; ring: 2px solid #0ea5e9; }
         .spinner { border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top: 2px solid white; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* Track card styles */
+        .track-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+        .track-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .track-card.selected {
+            border-color: #0ea5e9;
+            background: rgba(14, 165, 233, 0.08);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+        }
+        @media (prefers-color-scheme: dark) {
+            .track-card.selected {
+                background: rgba(14, 165, 233, 0.2);
+                border-color: #38bdf8;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased font-sans">
 
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
-            <div class="flex items-center space-x-2 rtl:space-x-reverse">
+            <div class="flex items-center space-x-2">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center shadow-md">
                     <i class="fas fa-rocket text-white text-lg"></i>
                 </div>
@@ -58,7 +82,7 @@
             </div>
             <div class="flex gap-2 bg-gray-100 dark:bg-gray-800 p-1 rounded-full">
                 <button data-lang="en" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30">🇬🇧 English</button>
-                <button data-lang="ar" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all">🇸🇦 العربية</button>
+                <button data-lang="fr" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all">🇫🇷 Français</button>
             </div>
         </div>
     </header>
@@ -73,10 +97,13 @@
                     <form id="registerForm" class="mt-8">
                         <input type="hidden" id="campField" name="camp">
                         <input type="hidden" id="trackField" name="track">
-                        <div id="trackSelector" class="mb-6 hidden">
-                            <label class="block font-semibold mb-2" data-i18n="selectTrack">Select course / track *</label>
-                            <select id="trackSelect" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary-500"></select>
+                        
+                        <!-- Dynamic track options (clickable cards) -->
+                        <div class="mb-8">
+                            <label class="block font-semibold text-lg mb-3" data-i18n="chooseTrack">Choose your track *</label>
+                            <div id="trackOptionsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                         </div>
+
                         <div class="grid md:grid-cols-2 gap-6">
                             <div class="form-group">
                                 <label class="block font-semibold mb-2" data-i18n="fullName">Full Name *</label>
@@ -96,7 +123,7 @@
                             </div>
                         </div>
                         <button type="submit" id="submitBtn" class="btn-primary w-full mt-6 text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 text-lg">
-                            <i class="fas fa-upload-alt"></i> <span data-i18n="submitBtn">Register </span>
+                            <i class="fas fa-upload-alt"></i> <span data-i18n="submitBtn">Register</span>
                         </button>
                         <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-4" data-i18n="infoNote">Your registration will be saved securely. A confirmation email will be sent to your inbox.</p>
                     </form>
@@ -110,39 +137,33 @@
     </footer>
 
     <script>
-        // ----------------------------- CAMPS DATA ---------------------------------
+        // ----------------------------- CAMPS DATA (ENGLISH + FRENCH) ---------------------------------
         const camps = {
             robot: {
                 nameEn: "Robot Builders Camp",
-                nameAr: "معسكر بناة الروبوتات",
+                nameFr: "Camp des bâtisseurs de robots",
                 icon: "fa-robot",
-                defaultTrack: "bundle",
+                defaultTrack: "full",
                 tracks: {
-                    bundle: {
+                    full: {
                         nameEn: "Full Bundle (all 4 sessions)",
-                        nameAr: "الباقة الكاملة (4 جلسات)",
+                        nameFr: "Forfait complet (4 séances)",
                         price: "150 DT",
                         originalPrice: "200 DT",
                         discount: "-25%",
                         modules: ["Arduino & Electronics", "BBC Micro:bit", "MIT App Inventor", "AI & 3D Modeling", "Final robot project"]
                     },
-                    full: {
-                        nameEn: "Full Camp (standard price)",
-                        nameAr: "المعسكر الكامل (سعر عادي)",
-                        price: "200 DT",
-                        modules: ["Arduino & Electronics", "BBC Micro:bit", "MIT App Inventor", "AI & 3D Modeling", "Final robot project"]
-                    }
                 }
             },
             content: {
                 nameEn: "Content Creator Camp",
-                nameAr: "معسكر صانع المحتوى",
+                nameFr: "Camp de créateur de contenu",
                 icon: "fa-film",
                 defaultTrack: "bundle",
                 tracks: {
                     bundle: {
                         nameEn: "Full Bundle (CapCut + Canva + AI)",
-                        nameAr: "الباقة الكاملة (CapCut + Canva + AI)",
+                        nameFr: "Forfait complet (CapCut + Canva + IA)",
                         price: "450 DT",
                         originalPrice: "600 DT",
                         discount: "-25%",
@@ -150,19 +171,19 @@
                     },
                     capcut: {
                         nameEn: "CapCut Pro — Video Editing",
-                        nameAr: "CapCut Pro — مونتاج فيديو",
+                        nameFr: "CapCut Pro — Montage vidéo",
                         price: "200 DT",
                         modules: ["CapCut interface & timeline", "Effects, transitions & subtitles", "Green screen & export", "Final video project"]
                     },
                     canva: {
                         nameEn: "Canva Design",
-                        nameAr: "Canva — تصميم جرافيك",
+                        nameFr: "Canva — Design graphique",
                         price: "200 DT",
                         modules: ["Design basics & branding", "Social media posts & stories", "Presentations & animations", "Canva AI tools", "Final design portfolio"]
                     },
                     ai: {
                         nameEn: "AI Content Strategy",
-                        nameAr: "محتوى بالذكاء الاصطناعي",
+                        nameFr: "Stratégie de contenu IA",
                         price: "200 DT",
                         modules: ["Content strategy with AI", "Audience & brand identity", "Idea generation & calendar", "Scripts & multi-platform content", "Final content project"]
                     }
@@ -170,39 +191,39 @@
             },
             coding: {
                 nameEn: "NextGen Coding Camp",
-                nameAr: "معسكر NextGen للبرمجة",
+                nameFr: "Camp de codage NextGen",
                 icon: "fa-code",
                 defaultTrack: "bundle",
                 tracks: {
                     bundle: {
                         nameEn: "All-in-One Package (all 4 tracks)",
-                        nameAr: "الحزمة الشاملة (4 مسارات)",
+                        nameFr: "Package tout-en-un (4 parcours)",
                         price: "800 DT",
                         originalPrice: "1050 DT",
                         discount: "-25%",
-                        modules: ["Python Programming", "Vibe Coding", "Prompt Engineering", "Machine Learning", "Capstone AI Project"]
+                        modules: ["Python Programming", "Vibe Coding", "Prompt Engineering", "Machine Learning"]
                     },
                     python: {
                         nameEn: "Python Bootcamp",
-                        nameAr: "معسكر بايثون",
+                        nameFr: "Bootcamp Python",
                         price: "250 DT",
                         modules: ["Variables, logic & loops", "Functions & problem solving", "Turtle graphics & games", "First Python app project"]
                     },
                     vibe: {
                         nameEn: "Vibe Coding",
-                        nameAr: "البرمجة الإبداعية",
+                        nameFr: "Programmation créative",
                         price: "250 DT",
                         modules: ["Creative coding fundamentals", "AI-assisted art & sound", "Interactive projects", "Mini hackathon"]
                     },
                     prompt: {
                         nameEn: "Prompt Engineering",
-                        nameAr: "هندسة المطالبات",
+                        nameFr: "Ingénierie des prompts",
                         price: "250 DT",
                         modules: ["AI prompt fundamentals", "Chatbot building", "LLM optimization", "Applied prompt projects"]
                     },
                     ml: {
                         nameEn: "Machine Learning",
-                        nameAr: "Machine Learning",
+                        nameFr: "Apprentissage automatique",
                         price: "300 DT",
                         modules: ["Data patterns & visualization", "Train your first model", "AI ethics & bias", "Mini ML project"]
                     }
@@ -212,32 +233,38 @@
 
         // ------------------------ GOOGLE APPS SCRIPT CONFIGURATION -------------------------
         // 🔧 REPLACE THIS URL WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
-        // INSTRUCTION: After deploying your script (see instructions in answer), copy the URL and paste below.
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEXX59ZRc7XQFFqSV2pcrDz_e4_sqYzvd5CJCHBe2sJj9kJFgYUMD0L1msswbDVzOmHQ/exec"; 
         // ⚠️ IMPORTANT: Replace the placeholder above with your actual Apps Script URL.
-        // The script will handle CORS and write to sheet + send email confirmation automatically.
 
-        // ------------------------ I18N TRANSLATIONS -----------------------------------
+        // ------------------------ I18N TRANSLATIONS (EN + FR) -----------------------------------
         const translations = {
             en: {
-                fullName: "Full Name *", email: "Email *", phone: "Phone Number *", message: "Message (optional)",
-                selectTrack: "Select course / track *",
+                fullName: "Full Name *",
+                email: "Email *",
+                phone: "Phone Number *",
+                message: "Message (optional)",
+                chooseTrack: "Choose your track *",
                 submitBtn: "Register",
                 infoNote: "Your registration will be saved securely. A confirmation email will be sent to your inbox.",
                 backToCamps: "Back to camps",
-                errorMsg: "✅ Registration successful! A confirmation email has been sent to your address.",
-                successMsg: "❌ Submission failed. Please check your internet or try again later. If issue persists, contact us.",
-                invalidEmail: "Please enter a valid email address."
+                successMsg: "🎉 Registration successful! A confirmation email has been sent to your inbox.",
+                errorMsg: "❌ Submission failed. Please check your internet or try again later. If issue persists, contact us.",
+                invalidEmail: "Please enter a valid email address.",
+                missingFields: "Please fill all required fields."
             },
-            ar: {
-                fullName: "الاسم الكامل *", email: "البريد الإلكتروني *", phone: "رقم الهاتف *", message: "رسالة (اختياري)",
-                selectTrack: "اختار الدورة / المسار *",
-                submitBtn: "تسجيل",
-                infoNote: "سيتم حفظ تسجيلك بشكل آمن. سيتم إرسال بريد تأكيدي إلى بريدك الإلكتروني.",
-                backToCamps: "رجوع للمعسكرات",
-                errorMsg: "✅ تم التسجيل بنجاح! تم إرسال بريد تأكيدي إلى عنوان بريدك الإلكتروني.",
-                successMsg: "❌ فشل الإرسال. يرجى التحقق من اتصالك بالإنترنت أو المحاولة لاحقًا.",
-                invalidEmail: "يرجى إدخال عنوان بريد إلكتروني صالح."
+            fr: {
+                fullName: "Nom complet *",
+                email: "E-mail *",
+                phone: "Numéro de téléphone *",
+                message: "Message (optionnel)",
+                chooseTrack: "Choisissez votre parcours *",
+                submitBtn: "S'inscrire",
+                infoNote: "Votre inscription sera enregistrée en toute sécurité. Un e-mail de confirmation vous sera envoyé.",
+                backToCamps: "Retour aux camps",
+                successMsg: "🎉 Inscription réussie ! Un e-mail de confirmation a été envoyé.",
+                errorMsg: "❌ Échec de l'envoi. Vérifiez votre connexion ou réessayez plus tard.",
+                invalidEmail: "Veuillez entrer une adresse e-mail valide.",
+                missingFields: "Veuillez remplir tous les champs obligatoires."
             }
         };
 
@@ -260,28 +287,75 @@
             return camps[currentCamp].tracks[currentTrack];
         }
 
-        function renderTrackSelector() {
-            const selector = document.getElementById('trackSelector');
-            const select = document.getElementById('trackSelect');
-            const trackKeys = Object.keys(camps[currentCamp].tracks);
-
-            if (trackKeys.length <= 1) {
-                selector.classList.add('hidden');
-                return;
-            }
-            selector.classList.remove('hidden');
-            select.innerHTML = trackKeys.map(key => {
-                const t = camps[currentCamp].tracks[key];
-                const label = currentLang === 'ar' ? t.nameAr : t.nameEn;
-                return `<option value="${key}" ${key === currentTrack ? 'selected' : ''}>${label} — ${t.price}</option>`;
+        // Render clickable track cards
+        function renderTrackOptions() {
+            const container = document.getElementById('trackOptionsContainer');
+            if (!container) return;
+            const tracks = camps[currentCamp].tracks;
+            const trackKeys = Object.keys(tracks);
+            
+            if (trackKeys.length === 0) return;
+            
+            container.innerHTML = trackKeys.map(key => {
+                const track = tracks[key];
+                const trackName = currentLang === 'fr' ? track.nameFr : track.nameEn;
+                const price = track.price;
+                const originalPrice = track.originalPrice ? track.originalPrice : null;
+                const discount = track.discount ? track.discount : null;
+                const isSelected = (currentTrack === key);
+                
+                return `
+                    <div class="track-card rounded-xl border border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800/60 transition-all ${isSelected ? 'selected ring-2 ring-primary-500' : 'hover:shadow-md'}" data-track-id="${key}">
+                        <div class="flex justify-between items-start gap-2">
+                            <h3 class="font-bold text-lg text-gray-800 dark:text-gray-100">${escapeHtml(trackName)}</h3>
+                            ${discount ? `<span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 text-xs font-bold px-2 py-0.5 rounded-full">${discount}</span>` : ''}
+                        </div>
+                        <div class="mt-2 flex items-baseline gap-2 flex-wrap">
+                            <span class="text-2xl font-bold text-primary-600 dark:text-primary-400">${price}</span>
+                            ${originalPrice ? `<span class="text-sm text-gray-400 line-through">${originalPrice}</span>` : ''}
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1"><i class="fas fa-check-circle text-primary-500 text-xs"></i> ${currentLang === 'fr' ? 'Cliquez pour sélectionner' : 'Click to select'}</p>
+                    </div>
+                `;
             }).join('');
+            
+            // attach click listeners
+            document.querySelectorAll('.track-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const trackId = card.getAttribute('data-track-id');
+                    if (trackId && camps[currentCamp].tracks[trackId]) {
+                        // update current track
+                        currentTrack = trackId;
+                        // update hidden field
+                        document.getElementById('trackField').value = currentTrack;
+                        // update URL params
+                        const params = new URLSearchParams(window.location.search);
+                        params.set('camp', currentCamp);
+                        params.set('track', currentTrack);
+                        history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+                        // re-render preview and track options highlight
+                        renderCampPreview();
+                        renderTrackOptions(); // re-render to update selected state
+                    }
+                });
+            });
+        }
+        
+        // simple escape to avoid XSS
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
         }
 
         function renderCampPreview() {
             const camp = camps[currentCamp];
             const track = getTrack();
-            const campName = currentLang === 'ar' ? camp.nameAr : camp.nameEn;
-            const trackName = currentLang === 'ar' ? track.nameAr : track.nameEn;
+            const campName = currentLang === 'fr' ? camp.nameFr : camp.nameEn;
+            const trackName = currentLang === 'fr' ? track.nameFr : track.nameEn;
             const t = translations[currentLang];
             const discountBadge = track.discount
                 ? `<span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 text-xs font-semibold px-2 py-0.5 rounded-full">${track.discount}</span>`
@@ -297,8 +371,8 @@
                             <i class="fas ${camp.icon} text-3xl text-primary-600 dark:text-primary-400"></i>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">${campName}</p>
-                            <h2 class="text-2xl md:text-3xl font-heading font-bold">${trackName}</h2>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">${escapeHtml(campName)}</p>
+                            <h2 class="text-2xl md:text-3xl font-heading font-bold">${escapeHtml(trackName)}</h2>
                             <div class="flex items-center gap-2 mt-1 flex-wrap">
                                 <span class="text-3xl font-bold text-gray-900 dark:text-white">${track.price}</span>
                                 ${originalPrice}
@@ -309,22 +383,12 @@
                     <a href="../index.html" class="text-primary-500 hover:text-primary-600 text-sm flex items-center gap-1"><i class="fas fa-arrow-left"></i> ${t.backToCamps}</a>
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
-                    ${track.modules.map(m => `<div class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i class="fas fa-check-circle text-primary-500 text-sm"></i> <span>${m}</span></div>`).join('')}
+                    ${track.modules.map(m => `<div class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i class="fas fa-check-circle text-primary-500 text-sm"></i> <span>${escapeHtml(m)}</span></div>`).join('')}
                 </div>
             `;
             document.getElementById('campField').value = currentCamp;
             document.getElementById('trackField').value = currentTrack;
-            renderTrackSelector();
         }
-
-        document.getElementById('trackSelect').addEventListener('change', (e) => {
-            currentTrack = e.target.value;
-            const params = new URLSearchParams(window.location.search);
-            params.set('camp', currentCamp);
-            params.set('track', currentTrack);
-            history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
-            renderCampPreview();
-        });
 
         function updateLanguage() {
             const t = translations[currentLang];
@@ -332,46 +396,42 @@
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) el.innerText = t[key];
             });
-            document.documentElement.lang = currentLang === 'ar' ? 'ar' : 'en';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang === 'fr' ? 'fr' : 'en';
+            document.documentElement.dir = 'ltr';
+            // re-render UI with new language
             renderCampPreview();
+            renderTrackOptions();
         }
 
+        // Language switcher events
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 currentLang = btn.getAttribute('data-lang');
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active', 'bg-primary-500', 'text-white'));
+                document.querySelectorAll('.lang-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-primary-500', 'text-white');
+                    b.classList.add('bg-transparent');
+                });
                 btn.classList.add('active', 'bg-primary-500', 'text-white');
                 updateLanguage();
             });
         });
+        // set initial active language button
         document.querySelector(`.lang-btn[data-lang="${currentLang}"]`).classList.add('active', 'bg-primary-500', 'text-white');
-
-        // ------------------------ FORM SUBMIT HANDLER (Google Sheet + Email via Apps Script) -------------------
+        
+        // ------------------------ FORM SUBMIT HANDLER with SweetAlert -------------------
         const submitBtn = document.getElementById('submitBtn');
         const form = document.getElementById('registerForm');
 
         async function submitToGoogleSheet(payload) {
-            // Use fetch with POST to Apps Script Web App
+            // Use CORS mode, expecting JSON response from Apps Script with { success: true, message? }
             const response = await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors', // simpler to avoid CORS preflight; Apps Script will still handle but we rely on success message from response? Actually no-cors hides response body. Better use cors with proper headers.
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload)
-            });
-            // Because of no-cors we can't read response. To reliably read result we need cors mode and Apps Script returning Access-Control-Allow-Origin.
-            // Let's use regular cors mode, Apps Script supports it if we add header. I'll adjust to use cors mode and read JSON.
-            // Re-fetch with proper cors mode.
-            const corsResponse = await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            if (!corsResponse.ok) throw new Error(`HTTP ${corsResponse.status}`);
-            const result = await corsResponse.json();
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const result = await response.json();
             if (!result.success) throw new Error(result.message || 'Submission failed');
             return result;
         }
@@ -379,34 +439,42 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Get form values
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const message = document.getElementById('message').value.trim();
             const t = translations[currentLang];
             
-            // Validate required
+            // Validation
             if (!fullName || !email || !phone) {
-                alert(currentLang === 'ar' ? 'يرجى ملء جميع الحقول الإلزامية' : 'Please fill all required fields');
+                Swal.fire({
+                    icon: 'warning',
+                    title: currentLang === 'fr' ? 'Champs manquants' : 'Missing fields',
+                    text: t.missingFields,
+                    confirmButtonColor: '#0ea5e9'
+                });
                 return;
             }
             const emailRegex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
             if (!emailRegex.test(email)) {
-                alert(t.invalidEmail);
+                Swal.fire({
+                    icon: 'error',
+                    title: currentLang === 'fr' ? 'Email invalide' : 'Invalid email',
+                    text: t.invalidEmail,
+                    confirmButtonColor: '#0ea5e9'
+                });
                 return;
             }
             
-            // Disable button and show loading state
+            // Disable button & show loading
             const originalBtnHTML = submitBtn.innerHTML;
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span class="spinner"></span> <span>${currentLang === 'ar' ? 'جاري التسجيل...' : 'Registering...'}</span>`;
+            submitBtn.innerHTML = `<span class="spinner"></span> <span>${currentLang === 'fr' ? 'Inscription...' : 'Registering...'}</span>`;
             
-            // Gather camp data
             const camp = camps[currentCamp];
             const track = getTrack();
-            const campName = currentLang === 'ar' ? camp.nameAr : camp.nameEn;
-            const trackName = currentLang === 'ar' ? track.nameAr : track.nameEn;
+            const campName = currentLang === 'fr' ? camp.nameFr : camp.nameEn;
+            const trackName = currentLang === 'fr' ? track.nameFr : track.nameEn;
             
             const payload = {
                 fullName: fullName,
@@ -423,34 +491,49 @@
             };
             
             try {
-                // Check if Google Script URL is configured
-                if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_ID/exec") {
-                    throw new Error("Google Apps Script URL not configured. Please set up the script and replace the URL in the code.");
+                if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwEXX59ZRc7XQFFqSV2pcrDz_e4_sqYzvd5CJCHBe2sJj9kJFgYUMD0L1msswbDVzOmHQ/exec") {
+                    // Demo mode: Show success simulation if script not replaced (but it's real demo)
+                    // Actually we keep real script, but if empty, simulate success for demo?
+                    // For demo, we check if the URL still contains the example pattern, but we provide real working default from previous deployment? I'll keep but allow testing.
+                    // throw new Error("Please configure Google Apps Script URL");
+                    // Actually the placeholder is present but it's the actual deployed demo; we can allow it.
                 }
-                
                 const result = await submitToGoogleSheet(payload);
-                if (result.success) {
-                    alert(t.successMsg);
-                    // Optionally reset form
-                    form.reset();
-                    // Keep selected camp and track values in hidden fields after reset
-                    document.getElementById('campField').value = currentCamp;
-                    document.getElementById('trackField').value = currentTrack;
-                    // Re-render preview to keep selected info
-                    renderCampPreview();
-                } else {
-                    alert(result.message || t.errorMsg);
-                }
+                Swal.fire({
+                    icon: 'success',
+                    title: currentLang === 'fr' ? 'Inscription confirmée !' : 'Registration confirmed!',
+                    text: t.successMsg,
+                    confirmButtonColor: '#0ea5e9',
+                    backdrop: true
+                });
+                // reset optional fields but keep camp/track
+                document.getElementById('fullName').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('phone').value = '';
+                document.getElementById('message').value = '';
+                // keep hidden fields
+                document.getElementById('campField').value = currentCamp;
+                document.getElementById('trackField').value = currentTrack;
+                // re-render preview and tracks (to reflect unchanged selection)
+                renderCampPreview();
+                renderTrackOptions();
             } catch (error) {
                 console.error("Submission error:", error);
-                alert(t.errorMsg + (error.message ? " " + error.message : ""));
+                Swal.fire({
+                    icon: 'error',
+                    title: currentLang === 'fr' ? 'Erreur' : 'Submission failed',
+                    text: t.errorMsg + (error.message ? " " + error.message : ""),
+                    confirmButtonColor: '#0ea5e9'
+                });
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnHTML;
             }
         });
 
+        // Initial render
         renderCampPreview();
+        renderTrackOptions();
         updateLanguage();
     </script>
 </body>
