@@ -53,22 +53,32 @@
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-white focus:dark:bg-gray-900 focus:px-4 focus:py-2 focus:rounded focus:z-50">Skip to content</a>
 
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
-        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
-            <div class="flex items-center space-x-2 rtl:space-x-reverse">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center shadow-md">
                     <i class="fas fa-rocket text-white text-lg"></i>
                 </div>
                 <span class="text-xl font-heading font-bold tracking-tight"><a href="/">Growth<span class="gradient-text">Zone</span></a></span>
             </div>
             <div class="hidden md:flex items-center space-x-6">
-                <a href="/robot/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_curriculum">Robot Builders Camp</a>
-                <a href="/coding/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_audience">NextGen Coding Camp</a>
-                <a href="/content/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_pricing">Content Creator Camp</a>
+                <a href="/robot/" class="nav-link text-gray-700 dark:text-gray-300 font-medium" data-key="nav_curriculum">Robot Builders Camp</a>
+                <a href="/coding/" class="nav-link text-gray-700 dark:text-gray-300 font-medium" data-key="nav_audience">NextGen Coding Camp</a>
+                <a href="/content/" class="nav-link text-gray-700 dark:text-gray-300 font-medium" data-key="nav_pricing">Content Creator Camp</a>
             </div>
-            <div class="flex gap-2 bg-gray-100 dark:bg-gray-800 p-1 rounded-full">
-                <button data-lang="en" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30 active">EN</button>
-                <button data-lang="fr" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30">FR</button>
+            <div class="flex items-center gap-3">
+                <div class="flex gap-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-full">
+                    <button id="lang-en" class="lang-btn px-3 py-1.5 rounded-full text-sm font-medium transition-all bg-primary-500 text-white">EN</button>
+                    <button id="lang-fr" class="lang-btn px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30">FR</button>
+                </div>
+                <button id="nav-toggle" class="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle menu">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
             </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-5 py-4 flex flex-col gap-4">
+            <a href="/robot/" class="text-gray-700 dark:text-gray-300 font-medium py-2 border-b border-gray-100 dark:border-gray-800" data-key="nav_curriculum">Robot Builders Camp</a>
+            <a href="/coding/" class="text-gray-700 dark:text-gray-300 font-medium py-2 border-b border-gray-100 dark:border-gray-800" data-key="nav_audience">NextGen Coding Camp</a>
+            <a href="/content/" class="text-gray-700 dark:text-gray-300 font-medium py-2" data-key="nav_pricing">Content Creator Camp</a>
         </div>
     </header>
 
@@ -279,6 +289,20 @@
     </footer>
 
     <script>
+        // Mobile nav toggle
+        document.getElementById('nav-toggle').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.querySelector('#nav-toggle i');
+            menu.classList.toggle('hidden');
+            icon.className = menu.classList.contains('hidden') ? 'fas fa-bars text-lg' : 'fas fa-times text-lg';
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.querySelector('#nav-toggle i').className = 'fas fa-bars text-lg';
+            });
+        });
+
         // Translations: English (default) + French
         const translations = {
             en: {
