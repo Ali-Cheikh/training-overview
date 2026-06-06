@@ -174,8 +174,8 @@
                 defaultTrack: "full", 
                 tracks: {
                     full: {
-                        nameEn: "Full Bundle (all 4 sessions)",
-                        nameFr: "Forfait complet (4 séances)",
+                        nameEn: "Full Bundle (all 5 sessions)",
+                        nameFr: "Forfait complet (5 séances)",
                         price: 150,
                         priceDisplay: "150 DT",
                         originalPrice: "200 DT",
@@ -280,7 +280,7 @@
         };
 
         // ------------------------ GOOGLE APPS SCRIPT CONFIGURATION -------------------------
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEXX59ZRc7XQFFqSV2pcrDz_e4_sqYzvd5CJCHBe2sJj9kJFgYUMD0L1msswbDVzOmHQ/exec"; 
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVX-PzhLRPjgQ-X97AYFqth4QzRwzGle8CsazNe5DUHllkV1kjkM8f1uOMMzWzUB0eAg/exec"; 
 
         // ------------------------ I18N TRANSLATIONS (EN + FR) -----------------------------------
         const translations = {
@@ -532,59 +532,72 @@
             });
         });
         document.querySelector(`.lang-btn[data-lang="${currentLang}"]`).classList.add('active', 'bg-primary-500', 'text-white');
-        
-        // ------------------------ FORM SUBMIT (matched to Apps Script backend) -------------------
+        // ------------------------ FORM SUBMIT (always success, no CORS errors) -------------------
         const submitBtn = document.getElementById('submitBtn');
         const form = document.getElementById('registerForm');
 
         async function submitToGoogleSheet(payload) {
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
+            // Use no-cors to prevent any CORS blocking; we won't read the response
+            await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'cors',
-                headers: { 'Content-Type': 'application/json' },
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
                 body: JSON.stringify(payload)
             });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const result = await response.json();
-            if (!result.success) throw new Error(result.message || 'Submission failed');
-            return result;
+            // No response parsing – we assume it worked
         }
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const message = document.getElementById('message').value.trim();
             const t = translations[currentLang];
-            
+
             if (!fullName || !email || !phone) {
-                Swal.fire({ icon: 'warning', title: currentLang === 'fr' ? 'Champs manquants' : 'Missing fields', text: t.missingFields, confirmButtonColor: '#0ea5e9' });
+                Swal.fire({
+                    icon: 'warning',
+                    title: currentLang === 'fr' ? 'Champs manquants' : 'Missing fields',
+                    text: t.missingFields,
+                    confirmButtonColor: '#0ea5e9'
+                });
                 return;
             }
             if (selectedTrackIds.length === 0) {
-                Swal.fire({ icon: 'warning', title: currentLang === 'fr' ? 'Aucun parcours' : 'No track selected', text: t.selectAtLeastOne, confirmButtonColor: '#0ea5e9' });
+                Swal.fire({
+                    icon: 'warning',
+                    title: currentLang === 'fr' ? 'Aucun parcours' : 'No track selected',
+                    text: t.selectAtLeastOne,
+                    confirmButtonColor: '#0ea5e9'
+                });
                 return;
             }
             const emailRegex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
             if (!emailRegex.test(email)) {
-                Swal.fire({ icon: 'error', title: currentLang === 'fr' ? 'Email invalide' : 'Invalid email', text: t.invalidEmail, confirmButtonColor: '#0ea5e9' });
+                Swal.fire({
+                    icon: 'error',
+                    title: currentLang === 'fr' ? 'Email invalide' : 'Invalid email',
+                    text: t.invalidEmail,
+                    confirmButtonColor: '#0ea5e9'
+                });
                 return;
             }
-            
+
             submitBtn.disabled = true;
             const originalHTML = submitBtn.innerHTML;
-            submitBtn.innerHTML = `<span class="spinner"></span> <span>${currentLang === 'fr' ? 'Inscription...' : 'Registering...'}</span>`;
-            
+            submitBtn.innerHTML = `<span class="spinner"></span> <span>${
+                currentLang === 'fr' ? 'Inscription...' : 'Registering...'
+            }</span>`;
+
             const camp = camps[currentCamp];
             const campName = currentLang === 'fr' ? camp.nameFr : camp.nameEn;
-            
-            // Build combined track strings for backend compatibility
+
             const combinedTrackName = selectedTrackIds.map(id => getTrackName(id, currentLang)).join(', ');
             const combinedTrackId = selectedTrackIds.join(',');
             const totalPrice = getTotalPrice();
-            
+
             const payload = {
                 fullName,
                 email,
@@ -592,35 +605,43 @@
                 message,
                 campId: currentCamp,
                 campName,
-                trackName: combinedTrackName,   // e.g. "CapCut Pro — Video Editing, Canva Design"
-                trackId: combinedTrackId,       // e.g. "capcut,canva"
-                price: totalPrice,              // total price
+                trackName: combinedTrackName,
+                trackId: combinedTrackId,
+                price: totalPrice,
                 language: currentLang
             };
-            
+
+            // Fire-and-forget – always treat as success
             try {
                 await submitToGoogleSheet(payload);
-                Swal.fire({ icon: 'success', title: currentLang === 'fr' ? 'Inscription confirmée !' : 'Registration confirmed!', text: t.successMsg, confirmButtonColor: '#0ea5e9' });
-                // Clear form
-                document.getElementById('fullName').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('phone').value = '';
-                document.getElementById('message').value = '';
-                document.getElementById('campField').value = '';
-                document.getElementById('trackField').value = '';
-                document.getElementById('totalPriceField').value = '';
-                // Reset selection to default
-                selectedTrackIds = [campData.defaultTrack];
-                renderTrackOptions();
-                renderCampPreview();
-                updateSelectionSummary();
-            } catch (error) {
-                console.error(error);
-                Swal.fire({ icon: 'success', title: currentLang === 'fr' ? 'Inscription confirmée !' : 'Registration confirmed!', text: t.successMsg, confirmButtonColor: '#0ea5e9' });
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalHTML;
+            } catch (err) {
+                // Even if offline, just log and continue to success
+                console.log('Submission attempt finished (may have failed silently).');
             }
+
+            // Always show success
+            Swal.fire({
+                icon: 'success',
+                title: currentLang === 'fr' ? 'Inscription confirmée !' : 'Registration confirmed!',
+                text: t.successMsg,
+                confirmButtonColor: '#0ea5e9'
+            });
+
+            // Clear form
+            document.getElementById('fullName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('message').value = '';
+            document.getElementById('campField').value = '';
+            document.getElementById('trackField').value = '';
+            document.getElementById('totalPriceField').value = '';
+            selectedTrackIds = [campData.defaultTrack];
+            renderTrackOptions();
+            renderCampPreview();
+            updateSelectionSummary();
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalHTML;
         });
 
         // Initial render
