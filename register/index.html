@@ -47,7 +47,7 @@
         .spinner { border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top: 2px solid white; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        /* Track card styles */
+        /* Track card styles for multiple selection */
         .track-card {
             cursor: pointer;
             transition: all 0.2s ease;
@@ -68,21 +68,34 @@
                 border-color: #38bdf8;
             }
         }
+        .bundle-highlight {
+            background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(139,92,246,0.12));
+        }
+        .price-total {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0ea5e9;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased font-sans">
 
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2 rtl:space-x-reverse">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center shadow-md">
                     <i class="fas fa-rocket text-white text-lg"></i>
                 </div>
-                <span class="text-xl font-heading font-bold tracking-tight">Growth <span class="gradient-text">Zone</span></span>
+                <span class="text-xl font-heading font-bold tracking-tight"><a href="/">Growth<span class="gradient-text">Zone</span></a></span>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="/ai/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_curriculum">Robot Builders Camp</a>
+                <a href="/content/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_audience">NextGen Coding Camp</a>
+                <a href="/content/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_pricing">Content Creator Camp</a>
             </div>
             <div class="flex gap-2 bg-gray-100 dark:bg-gray-800 p-1 rounded-full">
-                <button data-lang="en" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30">🇬🇧 English</button>
-                <button data-lang="fr" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all">🇫🇷 Français</button>
+                <button data-lang="en" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30 active">EN</button>
+                <button data-lang="fr" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30">FR</button>
             </div>
         </div>
     </header>
@@ -97,11 +110,26 @@
                     <form id="registerForm" class="mt-8">
                         <input type="hidden" id="campField" name="camp">
                         <input type="hidden" id="trackField" name="track">
+                        <input type="hidden" id="totalPriceField" name="totalPrice">
+                        <input type="hidden" id="selectedTracksList" name="selectedTracks">
                         
-                        <!-- Dynamic track options (clickable cards) -->
-                        <div class="mb-8">
-                            <label class="block font-semibold text-lg mb-3" data-i18n="chooseTrack">Choose your track *</label>
+                        <!-- Dynamic track options (clickable cards for MULTIPLE SELECTION) -->
+                        <div class="mb-6">
+                            <label class="block font-semibold text-lg mb-3" data-i18n="chooseTrack">Choose your tracks (you can select multiple) *</label>
                             <div id="trackOptionsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                            <!-- Selected tracks summary with total price -->
+                            <div id="selectedSummary" class="mt-5 p-4 rounded-xl bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 hidden">
+                                <div class="flex flex-wrap justify-between items-center gap-2">
+                                    <div>
+                                        <span class="font-semibold text-sm" data-i18n="selectedTracksLabel">Selected tracks:</span>
+                                        <span id="selectedTracksNames" class="text-sm font-medium text-primary-700 dark:text-primary-300"></span>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-sm" data-i18n="totalPriceLabel">Total:</span>
+                                        <span id="totalPriceDisplay" class="text-xl font-bold text-primary-600 dark:text-primary-400 ml-1"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="grid md:grid-cols-2 gap-6">
@@ -137,23 +165,24 @@
     </footer>
 
     <script>
-        // ----------------------------- CAMPS DATA (ENGLISH + FRENCH) ---------------------------------
+        // ----------------------------- CAMPS DATA (ENGLISH + FRENCH) - UPDATED WITH FRENCH TRANSLATIONS ---------------------------------
         const camps = {
             robot: {
                 nameEn: "Robot Builders Camp",
                 nameFr: "Camp des bâtisseurs de robots",
                 icon: "fa-robot",
-                defaultTrack: "full",
+                defaultTrack: "full", 
                 tracks: {
                     full: {
                         nameEn: "Full Bundle (all 4 sessions)",
                         nameFr: "Forfait complet (4 séances)",
-                        price: "150 DT",
+                        price: 150,
+                        priceDisplay: "150 DT",
                         originalPrice: "200 DT",
-                        dates: "1 week",
                         discount: "-25%",
-                        modules: ["Arduino & Electronics", "BBC Micro:bit", "MIT App Inventor", "AI & 3D Modeling", "Final robot project"]
-                    },
+                        modulesEn: ["Arduino & Electronics", "BBC Micro:bit", "MIT App Inventor", "AI & 3D Modeling", "Final robot project"],
+                        modulesFr: ["Arduino & Électronique", "BBC Micro:bit", "MIT App Inventor", "IA & Modélisation 3D", "Projet robot final"]
+                    }
                 }
             },
             content: {
@@ -165,31 +194,36 @@
                     bundle: {
                         nameEn: "Full Bundle (CapCut + Canva + AI)",
                         nameFr: "Forfait complet (CapCut + Canva + IA)",
-                        price: "450 DT",
+                        price: 450,
+                        priceDisplay: "450 DT",
                         originalPrice: "600 DT",
                         discount: "-25%",
-                        modules: ["CapCut Video Editing", "Canva Graphic Design", "Content with AI", "Final Portfolio"]
+                        modulesEn: ["CapCut Video Editing", "Canva Graphic Design", "Content with AI", "Final Portfolio"],
+                        modulesFr: ["Montage vidéo CapCut", "Design graphique Canva", "Création de contenu avec IA", "Portfolio final"]
                     },
                     capcut: {
                         nameEn: "CapCut Pro — Video Editing",
                         nameFr: "CapCut Pro — Montage vidéo",
-                        price: "200 DT",
-                        dates: "1 week",
-                        modules: ["CapCut interface & timeline", "Effects, transitions & subtitles", "Green screen & export", "Final video project"]
+                        price: 200,
+                        priceDisplay: "200 DT",
+                        modulesEn: ["CapCut interface & timeline", "Effects, transitions & subtitles", "Green screen & export", "Final video project"],
+                        modulesFr: ["Interface CapCut & timeline", "Effets, transitions & sous-titres", "Incrustation & export", "Projet vidéo final"]
                     },
                     canva: {
                         nameEn: "Canva Design",
                         nameFr: "Canva — Design graphique",
-                        price: "200 DT",
-                        dates: "1 week",
-                        modules: ["Design basics & branding", "Social media posts & stories", "Presentations & animations", "Canva AI tools", "Final design portfolio"]
+                        price: 200,
+                        priceDisplay: "200 DT",
+                        modulesEn: ["Design basics & branding", "Social media posts & stories", "Presentations & animations", "Canva AI tools", "Final design portfolio"],
+                        modulesFr: ["Bases du design & branding", "Posts & stories réseaux sociaux", "Présentations & animations", "Outils IA Canva", "Portfolio final"]
                     },
                     ai: {
                         nameEn: "AI Content Strategy",
                         nameFr: "Stratégie de contenu IA",
-                        price: "200 DT",
-                        dates: "1 week",
-                        modules: ["Content strategy with AI", "Audience & brand identity", "Idea generation & calendar", "Scripts & multi-platform content", "Final content project"]
+                        price: 200,
+                        priceDisplay: "200 DT",
+                        modulesEn: ["Content strategy with AI", "Audience & brand identity", "Idea generation & calendar", "Scripts & multi-platform content", "Final content project"],
+                        modulesFr: ["Stratégie de contenu avec IA", "Audience & identité de marque", "Génération d'idées & calendrier", "Scripts & contenu multi-plateforme", "Projet final"]
                     }
                 }
             },
@@ -202,47 +236,51 @@
                     bundle: {
                         nameEn: "All-in-One Package (all 4 tracks)",
                         nameFr: "Package tout-en-un (4 parcours)",
-                        price: "800 DT",
+                        price: 800,
+                        priceDisplay: "800 DT",
                         originalPrice: "1050 DT",
                         discount: "-25%",
-                        modules: ["Python Programming", "Vibe Coding", "Prompt Engineering", "Machine Learning"]
+                        modulesEn: ["Python Programming", "Vibe Coding", "Prompt Engineering", "Machine Learning"],
+                        modulesFr: ["Programmation Python", "Codage créatif", "Ingénierie des prompts", "Apprentissage automatique"]
                     },
                     python: {
                         nameEn: "Python Bootcamp",
                         nameFr: "Bootcamp Python",
-                        price: "250 DT",
-                        date: "1 week",
-                        modules: ["Variables, logic & loops", "Functions & problem solving", "Turtle graphics & games", "First Python app project"]
+                        price: 250,
+                        priceDisplay: "250 DT",
+                        modulesEn: ["Variables, logic & loops", "Functions & problem solving", "Turtle graphics & games", "First Python app project"],
+                        modulesFr: ["Variables, logique & boucles", "Fonctions & résolution de problèmes", "Graphiques Turtle & jeux", "Première application Python"]
                     },
                     vibe: {
                         nameEn: "Vibe Coding",
                         nameFr: "Programmation créative",
-                        price: "250 DT",
-                        date: "1 week",
-                        modules: ["Creative coding fundamentals", "AI-assisted art & sound", "Interactive projects", "Mini hackathon"]
+                        price: 250,
+                        priceDisplay: "250 DT",
+                        modulesEn: ["Creative coding fundamentals", "AI-assisted art & sound", "Interactive projects", "Mini hackathon"],
+                        modulesFr: ["Fondamentaux du codage créatif", "Art & son assistés par IA", "Projets interactifs", "Mini hackathon"]
                     },
                     prompt: {
                         nameEn: "Prompt Engineering",
                         nameFr: "Ingénierie des prompts",
-                        price: "250 DT",
-                        date: "1 week",
-                        modules: ["AI prompt fundamentals", "Chatbot building", "LLM optimization", "Applied prompt projects"]
+                        price: 250,
+                        priceDisplay: "250 DT",
+                        modulesEn: ["AI prompt fundamentals", "Chatbot building", "LLM optimization", "Applied prompt projects"],
+                        modulesFr: ["Fondamentaux des prompts IA", "Construction de chatbots", "Optimisation LLM", "Projets appliqués"]
                     },
                     ml: {
                         nameEn: "Machine Learning",
                         nameFr: "Apprentissage automatique",
-                        price: "300 DT",
-                        date: "2 week",
-                        modules: ["Data patterns & visualization", "Train your first model", "AI ethics & bias", "Mini ML project"]
+                        price: 300,
+                        priceDisplay: "300 DT",
+                        modulesEn: ["Data patterns & visualization", "Train your first model", "AI ethics & bias", "Mini ML project"],
+                        modulesFr: ["Modèles de données & visualisation", "Entraînez votre premier modèle", "Éthique & biais IA", "Mini projet ML"]
                     }
                 }
             }
         };
 
         // ------------------------ GOOGLE APPS SCRIPT CONFIGURATION -------------------------
-        // 🔧 REPLACE THIS URL WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwEXX59ZRc7XQFFqSV2pcrDz_e4_sqYzvd5CJCHBe2sJj9kJFgYUMD0L1msswbDVzOmHQ/exec"; 
-        // ⚠️ IMPORTANT: Replace the placeholder above with your actual Apps Script URL.
 
         // ------------------------ I18N TRANSLATIONS (EN + FR) -----------------------------------
         const translations = {
@@ -251,55 +289,97 @@
                 email: "Email *",
                 phone: "Phone Number *",
                 message: "Message (optional)",
-                chooseTrack: "Choose your track *",
+                chooseTrack: "Choose your tracks (you can select multiple) *",
                 submitBtn: "Register",
                 infoNote: "Your registration will be saved securely. A confirmation email will be sent to your inbox.",
                 backToCamps: "Back to camps",
                 successMsg: "🎉 Registration successful! A confirmation email has been sent to your inbox.",
                 errorMsg: "❌ Submission failed. Please check your internet or try again later. If issue persists, contact us.",
                 invalidEmail: "Please enter a valid email address.",
-                missingFields: "Please fill all required fields."
+                missingFields: "Please fill all required fields.",
+                selectedTracksLabel: "Selected tracks:",
+                totalPriceLabel: "Total:",
+                selectAtLeastOne: "Please select at least one track."
             },
             fr: {
                 fullName: "Nom complet *",
                 email: "E-mail *",
                 phone: "Numéro de téléphone *",
                 message: "Message (optionnel)",
-                chooseTrack: "Choisissez votre parcours *",
+                chooseTrack: "Choisissez vos parcours (sélection multiple possible) *",
                 submitBtn: "S'inscrire",
                 infoNote: "Votre inscription sera enregistrée en toute sécurité. Un e-mail de confirmation vous sera envoyé.",
                 backToCamps: "Retour aux camps",
                 successMsg: "🎉 Inscription réussie ! Un e-mail de confirmation a été envoyé.",
                 errorMsg: "❌ Échec de l'envoi. Vérifiez votre connexion ou réessayez plus tard.",
                 invalidEmail: "Veuillez entrer une adresse e-mail valide.",
-                missingFields: "Veuillez remplir tous les champs obligatoires."
+                missingFields: "Veuillez remplir tous les champs obligatoires.",
+                selectedTracksLabel: "Parcours sélectionnés :",
+                totalPriceLabel: "Total :",
+                selectAtLeastOne: "Veuillez sélectionner au moins un parcours."
             }
         };
 
         let currentLang = 'en';
         let currentCamp = 'robot';
-        let currentTrack = 'bundle';
+        let selectedTrackIds = [];   // array of selected track keys (supports multiple)
 
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('camp') && camps[urlParams.get('camp')]) {
             currentCamp = urlParams.get('camp');
         }
         const campData = camps[currentCamp];
+        
+        // Initialize selected tracks: defaultTrack OR from URL param (single, but we adapt to multiple)
+        let initialTrack = campData.defaultTrack;
         if (urlParams.has('track') && campData.tracks[urlParams.get('track')]) {
-            currentTrack = urlParams.get('track');
-        } else {
-            currentTrack = campData.defaultTrack;
+            initialTrack = urlParams.get('track');
+        }
+        selectedTrackIds = [initialTrack];
+
+        function getTrackPrice(trackKey) {
+            return campData.tracks[trackKey].price;
         }
 
-        function getTrack() {
-            return camps[currentCamp].tracks[currentTrack];
+        function getTrackName(trackKey, lang) {
+            const track = campData.tracks[trackKey];
+            return lang === 'fr' ? track.nameFr : track.nameEn;
         }
 
-        // Render clickable track cards
+        function getModulesList(trackKey, lang) {
+            const track = campData.tracks[trackKey];
+            return lang === 'fr' ? track.modulesFr : track.modulesEn;
+        }
+
+        // Calculate total price based on selectedTrackIds
+        function getTotalPrice() {
+            return selectedTrackIds.reduce((sum, tid) => sum + (campData.tracks[tid]?.price || 0), 0);
+        }
+
+        // Update summary UI
+        function updateSelectionSummary() {
+            const summaryDiv = document.getElementById('selectedSummary');
+            const selectedNamesSpan = document.getElementById('selectedTracksNames');
+            const totalPriceSpan = document.getElementById('totalPriceDisplay');
+            
+            if (selectedTrackIds.length === 0) {
+                summaryDiv.classList.add('hidden');
+                return;
+            }
+            summaryDiv.classList.remove('hidden');
+            const trackNames = selectedTrackIds.map(id => getTrackName(id, currentLang)).join(', ');
+            selectedNamesSpan.textContent = trackNames;
+            const totalPrice = getTotalPrice();
+            totalPriceSpan.textContent = `${totalPrice} DT`;
+            document.getElementById('totalPriceField').value = totalPrice;
+            document.getElementById('selectedTracksList').value = selectedTrackIds.join(',');
+        }
+
+        // Render clickable track cards for multiple selection
         function renderTrackOptions() {
             const container = document.getElementById('trackOptionsContainer');
             if (!container) return;
-            const tracks = camps[currentCamp].tracks;
+            const tracks = campData.tracks;
             const trackKeys = Object.keys(tracks);
             
             if (trackKeys.length === 0) return;
@@ -307,10 +387,10 @@
             container.innerHTML = trackKeys.map(key => {
                 const track = tracks[key];
                 const trackName = currentLang === 'fr' ? track.nameFr : track.nameEn;
-                const price = track.price;
+                const priceDisplay = track.priceDisplay;
                 const originalPrice = track.originalPrice ? track.originalPrice : null;
                 const discount = track.discount ? track.discount : null;
-                const isSelected = (currentTrack === key);
+                const isSelected = selectedTrackIds.includes(key);
                 
                 return `
                     <div class="track-card rounded-xl border border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-800/60 transition-all ${isSelected ? 'selected ring-2 ring-primary-500' : 'hover:shadow-md'}" data-track-id="${key}">
@@ -319,38 +399,50 @@
                             ${discount ? `<span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 text-xs font-bold px-2 py-0.5 rounded-full">${discount}</span>` : ''}
                         </div>
                         <div class="mt-2 flex items-baseline gap-2 flex-wrap">
-                            <span class="text-2xl font-bold text-primary-600 dark:text-primary-400">${price}</span>
+                            <span class="text-2xl font-bold text-primary-600 dark:text-primary-400">${priceDisplay}</span>
                             ${originalPrice ? `<span class="text-sm text-gray-400 line-through">${originalPrice}</span>` : ''}
-                            ${track.dates ? `<span class="text-xs text-gray-500 dark:text-gray-400 mt-2">${track.dates}</span>` : ''}
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1"><i class="fas fa-check-circle text-primary-500 text-xs"></i> ${currentLang === 'fr' ? 'Cliquez pour sélectionner' : 'Click to select'}</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 flex items-center gap-1"><i class="fas fa-check-circle text-primary-500 text-xs"></i> ${currentLang === 'fr' ? 'Cliquez pour sélectionner/désélectionner' : 'Click to select/deselect'}</p>
                     </div>
                 `;
             }).join('');
             
-            // attach click listeners
+            // attach click listeners for multi-selection
             document.querySelectorAll('.track-card').forEach(card => {
                 card.addEventListener('click', (e) => {
                     const trackId = card.getAttribute('data-track-id');
-                    if (trackId && camps[currentCamp].tracks[trackId]) {
-                        // update current track
-                        currentTrack = trackId;
-                        // update hidden field
-                        document.getElementById('trackField').value = currentTrack;
-                        // update URL params
-                        const params = new URLSearchParams(window.location.search);
-                        params.set('camp', currentCamp);
-                        params.set('track', currentTrack);
-                        history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
-                        // re-render preview and track options highlight
-                        renderCampPreview();
-                        renderTrackOptions(); // re-render to update selected state
+                    if (trackId && campData.tracks[trackId]) {
+                        const index = selectedTrackIds.indexOf(trackId);
+                        if (index === -1) {
+                            // add track
+                            selectedTrackIds.push(trackId);
+                        } else {
+                            // remove track
+                            selectedTrackIds.splice(index, 1);
+                        }
+                        // update trackField for backward compatibility (first selected or empty)
+                        document.getElementById('trackField').value = selectedTrackIds[0] || '';
+                        // update URL params? Keep first track in URL for share consistency
+                        if (selectedTrackIds.length > 0) {
+                            const params = new URLSearchParams(window.location.search);
+                            params.set('camp', currentCamp);
+                            params.set('track', selectedTrackIds[0]);
+                            history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+                        } else {
+                            const params = new URLSearchParams(window.location.search);
+                            params.set('camp', currentCamp);
+                            params.delete('track');
+                            history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+                        }
+                        // re-render highlight and summary
+                        renderTrackOptions();
+                        renderCampPreview();   // update preview modules (show combined modules or all selected tracks? We'll show first selected track's modules)
+                        updateSelectionSummary();
                     }
                 });
             });
         }
         
-        // simple escape to avoid XSS
         function escapeHtml(str) {
             return str.replace(/[&<>]/g, function(m) {
                 if (m === '&') return '&amp;';
@@ -362,17 +454,24 @@
 
         function renderCampPreview() {
             const camp = camps[currentCamp];
-            const track = getTrack();
             const campName = currentLang === 'fr' ? camp.nameFr : camp.nameEn;
-            const trackName = currentLang === 'fr' ? track.nameFr : track.nameEn;
             const t = translations[currentLang];
-            const discountBadge = track.discount
-                ? `<span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 text-xs font-semibold px-2 py-0.5 rounded-full">${track.discount}</span>`
-                : '';
-            const originalPrice = track.originalPrice
-                ? `<span class="text-sm text-gray-400 line-through">${track.originalPrice}</span>`
-                : '';
-
+            
+            // For preview, show selected tracks summary or if one track show modules
+            let modulesToShow = [];
+            if (selectedTrackIds.length === 1) {
+                const singleTrack = campData.tracks[selectedTrackIds[0]];
+                modulesToShow = getModulesList(selectedTrackIds[0], currentLang);
+            } else if (selectedTrackIds.length > 1) {
+                // Show combined unique modules? For simplicity show "Multiple tracks selected"
+                modulesToShow = [currentLang === 'fr' ? `${selectedTrackIds.length} parcours sélectionnés` : `${selectedTrackIds.length} tracks selected`];
+            } else {
+                modulesToShow = [currentLang === 'fr' ? 'Aucun parcours sélectionné' : 'No track selected'];
+            }
+            
+            const totalPrice = getTotalPrice();
+            const priceHtml = selectedTrackIds.length > 0 ? `<div class="flex items-center gap-2 mt-1 flex-wrap"><span class="text-3xl font-bold text-gray-900 dark:text-white">${totalPrice} DT</span></div>` : `<div class="text-gray-500 italic">${currentLang === 'fr' ? 'Sélectionnez un ou plusieurs parcours' : 'Select one or more tracks'}</div>`;
+            
             document.getElementById('campPreview').innerHTML = `
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 dark:border-gray-700 pb-6 mb-4">
                     <div class="flex items-center gap-4">
@@ -381,22 +480,19 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-500 dark:text-gray-400">${escapeHtml(campName)}</p>
-                            <h2 class="text-2xl md:text-3xl font-heading font-bold">${escapeHtml(trackName)}</h2>
-                            <div class="flex items-center gap-2 mt-1 flex-wrap">
-                                <span class="text-3xl font-bold text-gray-900 dark:text-white">${track.price}</span>
-                                ${originalPrice}
-                                ${discountBadge}
-                            </div>
+                            <h2 class="text-2xl md:text-3xl font-heading font-bold">${escapeHtml(currentLang === 'fr' ? 'Inscription multi-parcours' : 'Multi-Track Registration')}</h2>
+                            ${priceHtml}
                         </div>
                     </div>
                     <a href="../index.html" class="text-primary-500 hover:text-primary-600 text-sm flex items-center gap-1"><i class="fas fa-arrow-left"></i> ${t.backToCamps}</a>
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
-                    ${track.modules.map(m => `<div class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i class="fas fa-check-circle text-primary-500 text-sm"></i> <span>${escapeHtml(m)}</span></div>`).join('')}
+                    ${modulesToShow.map(m => `<div class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i class="fas fa-check-circle text-primary-500 text-sm"></i> <span>${escapeHtml(m)}</span></div>`).join('')}
                 </div>
+                ${selectedTrackIds.length > 1 ? `<div class="mt-4 text-sm text-primary-600 dark:text-primary-300 bg-primary-50 dark:bg-primary-900/30 p-3 rounded-lg"><i class="fas fa-layer-group mr-2"></i>${currentLang === 'fr' ? 'Vous avez sélectionné plusieurs parcours. Le prix total inclut tous ces modules.' : 'You have selected multiple tracks. The total price includes all selected modules.'}</div>` : ''}
             `;
             document.getElementById('campField').value = currentCamp;
-            document.getElementById('trackField').value = currentTrack;
+            document.getElementById('trackField').value = selectedTrackIds.join(',');
         }
 
         function updateLanguage() {
@@ -407,12 +503,12 @@
             });
             document.documentElement.lang = currentLang === 'fr' ? 'fr' : 'en';
             document.documentElement.dir = 'ltr';
-            // re-render UI with new language
             renderCampPreview();
             renderTrackOptions();
+            updateSelectionSummary();
         }
 
-        // Language switcher events
+        // Language switcher
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 currentLang = btn.getAttribute('data-lang');
@@ -424,15 +520,13 @@
                 updateLanguage();
             });
         });
-        // set initial active language button
         document.querySelector(`.lang-btn[data-lang="${currentLang}"]`).classList.add('active', 'bg-primary-500', 'text-white');
         
-        // ------------------------ FORM SUBMIT HANDLER with SweetAlert -------------------
+        // ------------------------ FORM SUBMIT (Supports multiple tracks) -------------------
         const submitBtn = document.getElementById('submitBtn');
         const form = document.getElementById('registerForm');
 
         async function submitToGoogleSheet(payload) {
-            // Use CORS mode, expecting JSON response from Apps Script with { success: true, message? }
             const response = await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'cors',
@@ -454,95 +548,68 @@
             const message = document.getElementById('message').value.trim();
             const t = translations[currentLang];
             
-            // Validation
             if (!fullName || !email || !phone) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: currentLang === 'fr' ? 'Champs manquants' : 'Missing fields',
-                    text: t.missingFields,
-                    confirmButtonColor: '#0ea5e9'
-                });
+                Swal.fire({ icon: 'warning', title: currentLang === 'fr' ? 'Champs manquants' : 'Missing fields', text: t.missingFields, confirmButtonColor: '#0ea5e9' });
+                return;
+            }
+            if (selectedTrackIds.length === 0) {
+                Swal.fire({ icon: 'warning', title: currentLang === 'fr' ? 'Aucun parcours' : 'No track selected', text: t.selectAtLeastOne, confirmButtonColor: '#0ea5e9' });
                 return;
             }
             const emailRegex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
             if (!emailRegex.test(email)) {
-                Swal.fire({
-                    icon: 'error',
-                    title: currentLang === 'fr' ? 'Email invalide' : 'Invalid email',
-                    text: t.invalidEmail,
-                    confirmButtonColor: '#0ea5e9'
-                });
+                Swal.fire({ icon: 'error', title: currentLang === 'fr' ? 'Email invalide' : 'Invalid email', text: t.invalidEmail, confirmButtonColor: '#0ea5e9' });
                 return;
             }
             
-            // Disable button & show loading
-            const originalBtnHTML = submitBtn.innerHTML;
             submitBtn.disabled = true;
+            const originalHTML = submitBtn.innerHTML;
             submitBtn.innerHTML = `<span class="spinner"></span> <span>${currentLang === 'fr' ? 'Inscription...' : 'Registering...'}</span>`;
             
             const camp = camps[currentCamp];
-            const track = getTrack();
             const campName = currentLang === 'fr' ? camp.nameFr : camp.nameEn;
-            const trackName = currentLang === 'fr' ? track.nameFr : track.nameEn;
+            const selectedTracksDetailed = selectedTrackIds.map(id => ({
+                id: id,
+                name: getTrackName(id, currentLang),
+                price: getTrackPrice(id)
+            }));
             
             const payload = {
-                fullName: fullName,
-                email: email,
-                phone: phone,
-                message: message,
+                fullName, email, phone, message,
                 campId: currentCamp,
                 campName: campName,
-                trackId: currentTrack,
-                trackName: trackName,
-                price: track.price,
+                trackIds: selectedTrackIds,
+                selectedTracks: selectedTracksDetailed,
+                totalPrice: getTotalPrice(),
                 language: currentLang,
                 registrationDate: new Date().toISOString()
             };
             
             try {
-                if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwEXX59ZRc7XQFFqSV2pcrDz_e4_sqYzvd5CJCHBe2sJj9kJFgYUMD0L1msswbDVzOmHQ/exec") {
-                    // Demo mode: Show success simulation if script not replaced (but it's real demo)
-                    // Actually we keep real script, but if empty, simulate success for demo?
-                    // For demo, we check if the URL still contains the example pattern, but we provide real working default from previous deployment? I'll keep but allow testing.
-                    // throw new Error("Please configure Google Apps Script URL");
-                    // Actually the placeholder is present but it's the actual deployed demo; we can allow it.
-                }
-                const result = await submitToGoogleSheet(payload);
-                Swal.fire({
-                    icon: 'success',
-                    title: currentLang === 'fr' ? 'Inscription confirmée !' : 'Registration confirmed!',
-                    text: t.successMsg,
-                    confirmButtonColor: '#0ea5e9',
-                    backdrop: true
-                });
-                // reset optional fields but keep camp/track
+                await submitToGoogleSheet(payload);
+                Swal.fire({ icon: 'success', title: currentLang === 'fr' ? 'Inscription confirmée !' : 'Registration confirmed!', text: t.successMsg, confirmButtonColor: '#0ea5e9' });
                 document.getElementById('fullName').value = '';
                 document.getElementById('email').value = '';
                 document.getElementById('phone').value = '';
                 document.getElementById('message').value = '';
-                // keep hidden fields
-                document.getElementById('campField').value = currentCamp;
-                document.getElementById('trackField').value = currentTrack;
-                // re-render preview and tracks (to reflect unchanged selection)
-                renderCampPreview();
+                // reset selection to default
+                selectedTrackIds = [campData.defaultTrack];
                 renderTrackOptions();
+                renderCampPreview();
+                updateSelectionSummary();
             } catch (error) {
-                console.error("Submission error:", error);
-                Swal.fire({
-                    icon: 'error',
-                    title: currentLang === 'fr' ? 'Erreur' : 'Submission failed',
-                    text: t.errorMsg + (error.message ? " " + error.message : ""),
-                    confirmButtonColor: '#0ea5e9'
-                });
+                console.error(error);
+                Swal.fire({ icon: 'error', title: currentLang === 'fr' ? 'Erreur' : 'Submission failed', text: t.errorMsg, confirmButtonColor: '#0ea5e9' });
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnHTML;
+                submitBtn.innerHTML = originalHTML;
             }
         });
 
         // Initial render
         renderCampPreview();
         renderTrackOptions();
+        updateSelectionSummary();
         updateLanguage();
     </script>
 </body>

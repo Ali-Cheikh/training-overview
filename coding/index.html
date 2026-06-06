@@ -113,29 +113,24 @@
 <body class="min-h-screen flex flex-col">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-white focus:dark:bg-gray-900 focus:px-4 focus:py-2 focus:rounded focus:z-50">Skip to content</a>
 
-    <!-- Header with Language Switch (EN/FR) -->
-    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 rounded-lg bg-primary-500 flex items-center justify-center">
-                    <i class="fas fa-code text-white text-lg"></i>
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
+            <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center shadow-md">
+                    <i class="fas fa-rocket text-white text-lg"></i>
                 </div>
-                <span class="text-xl font-heading font-bold">NextGen<span class="gradient-text">Coding</span></span>
+                <span class="text-xl font-heading font-bold tracking-tight"><a href="/">Growth<span class="gradient-text">Zone</span></a></span>
             </div>
-
             <div class="hidden md:flex items-center space-x-6">
-                <a href="#curriculum" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_curriculum">Curriculum</a>
-                <a href="#target-audience" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_audience">Who is for</a>
+                <a href="/ai/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_curriculum">Robot Builders Camp</a>
+                <a href="/content/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_audience">NextGen Coding Camp</a>
+                <a href="/content/" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_pricing">Content Creator Camp</a>
             </div>
-
-            <div class="flex items-center gap-3">
-                <button id="lang-fr" class="px-3 py-1 rounded-md text-sm font-medium transition border border-gray-300 dark:border-gray-700 hover:bg-primary-100">FR</button>
-                <button id="lang-en" class="px-3 py-1 rounded-md text-sm font-medium transition bg-primary-500 text-white">EN</button>
-                <a href="../register/index.html?camp=coding&track=bundle" class="bg-primary-500 hover:bg-primary-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow-md">
-                    <span class="i18n" data-key="register_btn">Register Now</span>
-                </a>
+            <div class="flex gap-2 bg-gray-100 dark:bg-gray-800 p-1 rounded-full">
+                <button data-lang="en" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30 active">EN</button>
+                <button data-lang="fr" class="lang-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all hover:bg-primary-100 dark:hover:bg-primary-900/30">FR</button>
             </div>
-        </nav>
+        </div>
     </header>
 
     <main id="main-content">
