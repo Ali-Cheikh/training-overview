@@ -165,7 +165,7 @@
     </footer>
 
     <script>
-        // ----------------------------- CAMPS DATA (ENGLISH + FRENCH) - UPDATED WITH FRENCH TRANSLATIONS ---------------------------------
+        // ----------------------------- CAMPS DATA (ENGLISH + FRENCH) ---------------------------------
         const camps = {
             robot: {
                 nameEn: "Robot Builders Camp",
@@ -407,17 +407,16 @@
                 `;
             }).join('');
             
-            // attach click listeners for multi-selection
+            // attach click listeners for multi-selection with bundle logic
             document.querySelectorAll('.track-card').forEach(card => {
                 card.addEventListener('click', (e) => {
                     const trackId = card.getAttribute('data-track-id');
                     if (!trackId || !campData.tracks[trackId]) return;
 
-                    // Determine if this camp has a real "bundle" that contains all other tracks
                     const hasBundle = campData.tracks.hasOwnProperty('bundle') && Object.keys(campData.tracks).length > 1;
 
                     if (trackId === 'bundle' && hasBundle) {
-                        // Toggle the bundle: if selected, remove it; otherwise select only the bundle
+                        // Toggle bundle: select only bundle or clear all
                         if (selectedTrackIds.includes('bundle')) {
                             selectedTrackIds = [];
                         } else {
@@ -426,7 +425,7 @@
                     } else {
                         const index = selectedTrackIds.indexOf(trackId);
                         if (index === -1) {
-                            // Adding an individual track → first remove the bundle if it was selected
+                            // Adding an individual track → remove bundle if present
                             if (hasBundle && selectedTrackIds.includes('bundle')) {
                                 selectedTrackIds = selectedTrackIds.filter(id => id !== 'bundle');
                             }
@@ -436,8 +435,7 @@
                         }
                     }
 
-                    // Update hidden fields and URL (keep as before)
-                    document.getElementById('trackField').value = selectedTrackIds[0] || '';
+                    document.getElementById('trackField').value = selectedTrackIds.join(',');
                     if (selectedTrackIds.length > 0) {
                         const params = new URLSearchParams(window.location.search);
                         params.set('camp', currentCamp);
@@ -450,7 +448,6 @@
                         history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
                     }
 
-                    // Re-render everything
                     renderTrackOptions();
                     renderCampPreview();
                     updateSelectionSummary();
@@ -472,20 +469,19 @@
             const campName = currentLang === 'fr' ? camp.nameFr : camp.nameEn;
             const t = translations[currentLang];
             
-            // For preview, show selected tracks summary or if one track show modules
             let modulesToShow = [];
             if (selectedTrackIds.length === 1) {
-                const singleTrack = campData.tracks[selectedTrackIds[0]];
                 modulesToShow = getModulesList(selectedTrackIds[0], currentLang);
             } else if (selectedTrackIds.length > 1) {
-                // Show combined unique modules? For simplicity show "Multiple tracks selected"
                 modulesToShow = [currentLang === 'fr' ? `${selectedTrackIds.length} parcours sélectionnés` : `${selectedTrackIds.length} tracks selected`];
             } else {
                 modulesToShow = [currentLang === 'fr' ? 'Aucun parcours sélectionné' : 'No track selected'];
             }
             
             const totalPrice = getTotalPrice();
-            const priceHtml = selectedTrackIds.length > 0 ? `<div class="flex items-center gap-2 mt-1 flex-wrap"><span class="text-3xl font-bold text-gray-900 dark:text-white">${totalPrice} DT</span></div>` : `<div class="text-gray-500 italic">${currentLang === 'fr' ? 'Sélectionnez un ou plusieurs parcours' : 'Select one or more tracks'}</div>`;
+            const priceHtml = selectedTrackIds.length > 0 ? 
+                `<div class="flex items-center gap-2 mt-1 flex-wrap"><span class="text-3xl font-bold text-gray-900 dark:text-white">${totalPrice} DT</span></div>` :
+                `<div class="text-gray-500 italic">${currentLang === 'fr' ? 'Sélectionnez un ou plusieurs parcours' : 'Select one or more tracks'}</div>`;
             
             document.getElementById('campPreview').innerHTML = `
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 dark:border-gray-700 pb-6 mb-4">
@@ -537,7 +533,7 @@
         });
         document.querySelector(`.lang-btn[data-lang="${currentLang}"]`).classList.add('active', 'bg-primary-500', 'text-white');
         
-        // ------------------------ FORM SUBMIT (Supports multiple tracks) -------------------
+        // ------------------------ FORM SUBMIT (matched to Apps Script backend) -------------------
         const submitBtn = document.getElementById('submitBtn');
         const form = document.getElementById('registerForm');
 
@@ -583,34 +579,37 @@
             
             const camp = camps[currentCamp];
             const campName = currentLang === 'fr' ? camp.nameFr : camp.nameEn;
-            const selectedTracksDetailed = selectedTrackIds.map(id => ({
-                id: id,
-                name: getTrackName(id, currentLang),
-                price: getTrackPrice(id)
-            }));
+            
+            // Build combined track strings for backend compatibility
+            const combinedTrackName = selectedTrackIds.map(id => getTrackName(id, currentLang)).join(', ');
+            const combinedTrackId = selectedTrackIds.join(',');
+            const totalPrice = getTotalPrice();
             
             const payload = {
-                fullName, email, phone, message,
+                fullName,
+                email,
+                phone,
+                message,
                 campId: currentCamp,
-                campName: campName,
-                trackIds: selectedTrackIds,
-                selectedTracks: selectedTracksDetailed,
-                totalPrice: getTotalPrice(),
-                language: currentLang,
-                registrationDate: new Date().toISOString()
+                campName,
+                trackName: combinedTrackName,   // e.g. "CapCut Pro — Video Editing, Canva Design"
+                trackId: combinedTrackId,       // e.g. "capcut,canva"
+                price: totalPrice,              // total price
+                language: currentLang
             };
             
             try {
                 await submitToGoogleSheet(payload);
                 Swal.fire({ icon: 'success', title: currentLang === 'fr' ? 'Inscription confirmée !' : 'Registration confirmed!', text: t.successMsg, confirmButtonColor: '#0ea5e9' });
+                // Clear form
                 document.getElementById('fullName').value = '';
                 document.getElementById('email').value = '';
                 document.getElementById('phone').value = '';
+                document.getElementById('message').value = '';
                 document.getElementById('campField').value = '';
                 document.getElementById('trackField').value = '';
-                document.getElementById('totalPrice').value = '';
-                document.getElementById('message').value = '';
-                // reset selection to default
+                document.getElementById('totalPriceField').value = '';
+                // Reset selection to default
                 selectedTrackIds = [campData.defaultTrack];
                 renderTrackOptions();
                 renderCampPreview();
