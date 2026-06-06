@@ -110,7 +110,7 @@
 <body class="min-h-screen flex flex-col">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-white focus:dark:bg-gray-900 focus:px-4 focus:py-2 focus:rounded focus:z-50">Skip to content</a>
 
-    <!-- Header with Language Switch -->
+    <!-- Header with Language Switch (EN/FR) -->
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
             <div class="flex items-center space-x-2">
@@ -126,8 +126,8 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="lang-ar" class="px-3 py-1 rounded-md text-sm font-medium transition border border-gray-300 dark:border-gray-700 hover:bg-primary-100">🇸🇦 عربي</button>
-                <button id="lang-en" class="px-3 py-1 rounded-md text-sm font-medium transition bg-primary-500 text-white">🇬🇧 EN</button>
+                <button id="lang-fr" class="px-3 py-1 rounded-md text-sm font-medium transition border border-gray-300 dark:border-gray-700 hover:bg-primary-100">FR</button>
+                <button id="lang-en" class="px-3 py-1 rounded-md text-sm font-medium transition bg-primary-500 text-white">EN</button>
                 <a href="../register/index.html?camp=coding&track=bundle" class="bg-primary-500 hover:bg-primary-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow-md">
                     <span class="i18n" data-key="register_btn">Register Now</span>
                 </a>
@@ -156,7 +156,7 @@
                             <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600"></div>
                             <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500"></div>
                         </div>
-                        <div class="ml-4 text-gray-600 dark:text-gray-400 i18n" data-key="hero_badge">🎯 أماكن محدودة — الدفعة الجاية قريب</div>
+                        <div class="ml-4 text-gray-600 dark:text-gray-400 i18n" data-key="hero_badge">🎯 Limited spots — next cohort soon</div>
                     </div>
                 </div>
                 <div class="relative animate-fade-in animate-delay-1">
@@ -183,45 +183,27 @@
         <section id="curriculum" class="py-16 bg-gray-50 dark:bg-gray-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
-                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="curriculum_title">منهج <span class="gradient-text">المعسكر</span></h2>
-                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="curriculum_sub">6 وحدات عملية + مشروع ختامي — ابنِ مشاريع حقيقية ببايثون والـ AI</p>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="curriculum_title">Bootcamp <span class="gradient-text">Curriculum</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="curriculum_sub">6 hands-on modules + Final Capstone — build real projects with Python and AI</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Module 1 -->
-                    <div class="card rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod1_title">🧠 فكر كمبرمج</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Python basics</span></div>
-                        <ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod1_1">المتغيرات، إدخال/إخراج</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod1_2">if/else والمنطق</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod1_3">أول سطور برمجية</span></li></ul>
-                    </div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod1_title">🧠 Think Like a Programmer</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Python basics</span></div><ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod1_1">Variables, input/output</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod1_2">if/else decisions & logic</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod1_3">First lines of code</span></li></ul></div>
                     <!-- Module 2 -->
-                    <div class="card rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod2_title">⚙️ حل المشكلات ببايثون</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Loops & Lists</span></div>
-                        <ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod2_1">الحلقات while</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod2_2">القوائم والتكرار</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod2_3">الدوال + هاكاثون صغير</span></li></ul>
-                    </div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod2_title">⚙️ Problem Solving with Python</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Loops & Lists</span></div><ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod2_1">Loops & while</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod2_2">Lists & iterations</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod2_3">Functions + Mini Hackathon</span></li></ul></div>
                     <!-- Module 3 -->
-                    <div class="card rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod3_title">🎨 الإبداع عبر الكود</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Turtle & Games</span></div>
-                        <ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod3_1">رسومات السلحفاة</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod3_2">بناء لعبة اختبارات</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod3_3">المشروع الأول: تطبيق بايثون</span></li></ul>
-                    </div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod3_title">🎨 Creativity Through Code</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Turtle & Games</span></div><ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod3_1">Turtle graphics & patterns</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod3_2">Build a Quiz Game</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod3_3">Capstone 1: My first Python app</span></li></ul></div>
                     <!-- Module 4 -->
-                    <div class="card rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod4_title">🤖 مقدمة للـ AI</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Supervised Learning</span></div>
-                        <ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod4_1">شنو الـ AI؟ كيف تتعلم الآلات</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod4_2">درّب أول نموذج AI</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod4_3">بايثون + توقعات AI</span></li></ul>
-                    </div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod4_title">🤖 Intro to Artificial Intelligence</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Supervised Learning</span></div><ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod4_1">What is AI? How machines learn</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod4_2">Train your first AI model</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod4_3">Python + AI predictions</span></li></ul></div>
                     <!-- Module 5 -->
-                    <div class="card rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod5_title">📊 البيانات و Machine Learning</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Mini AI Project</span></div>
-                        <ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod5_1">اكتشاف الأنماط في البيانات</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod5_2">تصور البيانات</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod5_3">التحيز وأخلاقيات AI</span></li></ul>
-                    </div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod5_title">📊 Data & Machine Learning</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Mini AI Project</span></div><ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod5_1">Finding patterns in data</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod5_2">Data visualizations</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod5_3">Bias & AI ethics</span></li></ul></div>
                     <!-- Module 6 -->
-                    <div class="card rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod6_title">🌍 التكنولوجيا المسؤولة</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Digital Citizenship</span></div>
-                        <ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod6_1">الخصوصية، الأمان، AI مسؤول</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod6_2">مستقبل المهن في AI والتكنولوجيا</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod6_3">ورشة التخطيط للمشروع الختامي</span></li></ul>
-                    </div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center justify-between mb-4"><h3 class="text-xl font-heading font-bold i18n" data-key="mod6_title">🌍 Responsible Technology</h3><span class="bg-primary-100 dark:bg-primary-900/30 text-primary-500 px-2 py-1 rounded-full text-xs">Digital Citizenship</span></div><ul class="space-y-2 text-sm"><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod6_1">Privacy, safety & responsible AI</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod6_2">Future careers in AI & tech</span></li><li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="mod6_3">Capstone planning workshop</span></li></ul></div>
                 </div>
                 <div class="mt-8 text-center">
                     <div class="card inline-block rounded-xl p-5 max-w-2xl mx-auto border-2 border-primary-300 bg-gradient-to-r from-primary-100 to-blue-100 dark:from-primary-900/30 dark:to-blue-900/30">
-                        <h1 class="text-5xl font-heading font-bold i18n" data-key="capstone_title">🏆 المشروع الختامي</h1>
-                        <h3 class="text-gray-600 text-bold dark:text-gray-400 mt-2 i18n " data-key="capstone_desc">ابنِ مشروع كامل بايثون + AI، قدّموا للموجّهين والأهل، تحصل على شهادة وجوائز!</h3>
+                        <h1 class="text-5xl font-heading font-bold i18n" data-key="capstone_title">🏆 Final Capstone Project</h1>
+                        <h3 class="text-gray-600 dark:text-gray-400 mt-2 i18n" data-key="capstone_desc">Build a complete Python + AI project, present to mentors & parents, earn certificate + prizes!</h3>
                     </div>
                 </div>
             </div>
@@ -231,102 +213,89 @@
         <section id="target-audience" class="py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
-                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="audience_title">لشكون هذي <span class="gradient-text">الدورة؟</span></h2>
-                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_sub">مبتكرون صغار من 9 إلى 15 سنة يحبون التكنولوجيا ويحبو يبنو مشاريع AI حقيقية</p>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="audience_title">Who This Is <span class="gradient-text">For</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_sub">Young innovators ages 13-18 who love technology and want to build real AI projects</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">1</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card1_title">المطور الطموح</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card1_desc">"علمني من الصفر — نحب نبرمج مشاريع AI حقيقية." مثالي للمبرمجين الجدد.</p></div>
-                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">2</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card2_title">المبدع</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card2_desc">"نحب الألعاب، الفن، والبرمجة — وريني كيف الـ AI يخلي الحاجات تفاعلية."</p></div>
-                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">3</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card3_title">المستكشف الفضولي</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card3_desc">"أعطيني تحديات AI ممتعة — نتعلم بالممارسة." مشاريع عملية ومسابقات.</p></div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">1</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card1_title">The Aspiring Developer</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card1_desc">"Teach me from scratch — I want to build real AI projects." Perfect for future coders.</p></div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">2</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card2_title">The Creative Builder</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card2_desc">"I love games, art, and coding — show me how AI makes things interactive."</p></div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">3</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card3_title">The Curious Tinkerer</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card3_desc">"Give me fun AI challenges — I learn by doing." Hands-on projects and competitions.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- PRICING & TRACKS (Offer Cards) with DT prices -->
+        <!-- PRICING & TRACKS -->
         <section id="pricing" class="py-16 bg-gray-50 dark:bg-gray-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="pricing_title">شنو الباقة <span class="gradient-text">اللي تناسبك؟</span></h2>
-                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="pricing_sub">الأسعار بالدينار التونسي (DT) — معسكرات مرنة، تدريب من GrowthZone</p>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="pricing_title">Choose Your <span class="gradient-text">Track</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="pricing_sub">Prices in Tunisian Dinar (DT) — flexible camps, instruction by GrowthZone</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Python 250 DT -->
-                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition">
-                        <i class="fab fa-python text-4xl text-primary-500 mb-3"></i>
-                        <h3 class="text-2xl font-heading font-bold i18n" data-key="track_python">معسكر بايثون</h3>
-                        <div class="text-3xl font-bold my-2">250 <span class="text-lg">DT</span></div>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_python_desc">إتقان أساسيات بايثون، المنطق، الحلقات، وبناء أول ألعابك.</p>
-                        <a href="../register/index.html?camp=coding&track=python" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">سجّل →</a>
-                    </div>
-                    <!-- Vibe Coding 250 DT -->
-                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition">
-                        <i class="fas fa-robot text-4xl text-purple-500 mb-3"></i>
-                        <h3 class="text-2xl font-heading font-bold i18n" data-key="track_vibe">البرمجة الإبداعية</h3>
-                        <div class="text-3xl font-bold my-2">250 <span class="text-lg">DT</span></div>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_vibe_desc">برمجة إبداعية + فن بالـ AI، صوت، ومشاريع تفاعلية.</p>
-                        <a href="../register/index.html?camp=coding&track=vibe" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">سجّل →</a>
-                    </div>
-                    <!-- Prompt Engineering 250 DT -->
-                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition">
-                        <i class="fas fa-magic text-4xl text-yellow-500 mb-3"></i>
-                        <h3 class="text-2xl font-heading font-bold i18n" data-key="track_prompt">هندسة المطالبات</h3>
-                        <div class="text-3xl font-bold my-2">250 <span class="text-lg">DT</span></div>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_prompt_desc">إتقان مطالبات الـ AI، بناء chatbots، وتحسين نماذج اللغة.</p>
-                        <a href="../register/index.html?camp=coding&track=prompt" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">سجّل →</a>
-                    </div>
-                    <!-- Machine Learning 300 DT -->
-                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition">
-                        <i class="fas fa-brain text-4xl text-blue-500 mb-3"></i>
-                        <h3 class="text-2xl font-heading font-bold i18n" data-key="track_ml">Machine Learning</h3>
-                        <div class="text-3xl font-bold my-2">300 <span class="text-lg">DT</span></div>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_ml_desc">تدريب النماذج، فهم البيانات، وإنشاء مصنفات AI.</p>
-                        <a href="../register/index.html?camp=coding&track=ml" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">سجّل →</a>
-                    </div>
+                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition"><i class="fab fa-python text-4xl text-primary-500 mb-3"></i><h3 class="text-2xl font-heading font-bold i18n" data-key="track_python">Python Bootcamp</h3><div class="text-3xl font-bold my-2">250 <span class="text-lg">DT</span></div><p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_python_desc">Master Python basics, logic, loops, and build your first games.</p><a href="../register/index.html?camp=coding&track=python" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">Register →</a></div>
+                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition"><i class="fas fa-robot text-4xl text-purple-500 mb-3"></i><h3 class="text-2xl font-heading font-bold i18n" data-key="track_vibe">Vibe Coding</h3><div class="text-3xl font-bold my-2">250 <span class="text-lg">DT</span></div><p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_vibe_desc">Creative coding + AI prompting, and interactive projects.</p><a href="../register/index.html?camp=coding&track=vibe" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">Register →</a></div>
+                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition"><i class="fas fa-magic text-4xl text-yellow-500 mb-3"></i><h3 class="text-2xl font-heading font-bold i18n" data-key="track_prompt">Prompt Engineering</h3><div class="text-3xl font-bold my-2">250 <span class="text-lg">DT</span></div><p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_prompt_desc">Master AI prompts, build chatbots, and optimize LLM interactions.</p><a href="../register/index.html?camp=coding&track=prompt" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">Register →</a></div>
+                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition"><i class="fas fa-brain text-4xl text-blue-500 mb-3"></i><h3 class="text-2xl font-heading font-bold i18n" data-key="track_ml">Machine Learning</h3><div class="text-3xl font-bold my-2">300 <span class="text-lg">DT</span></div><p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_ml_desc">Train models, understand data, and create AI classifiers.</p><a href="../register/index.html?camp=coding&track=ml" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">Register →</a></div>
                 </div>
-                <!-- Global Offer Card (-25%) -->
                 <div class="mt-8 flex justify-center">
                     <div class="card rounded-xl p-6 max-w-md w-full text-center bg-gradient-to-r from-primary-100 to-blue-100 dark:from-primary-900/30 dark:to-blue-900/30 border-2 border-primary-300">
                         <i class="fas fa-rocket text-4xl text-primary-600 mb-2"></i>
-                        <h3 class="text-3xl font-heading font-bold i18n" data-key="track_global">🌟 الحزمة الشاملة</h3>
-                        <p class="text-lg i18n" data-key="track_global_desc">جميع المسارات (بايثون + إبداعي + مطالبات + ML) — معسكر كامل</p>
+                        <h3 class="text-3xl font-heading font-bold i18n" data-key="track_global">🌟 All‑in‑One Package</h3>
+                        <p class="text-lg i18n" data-key="track_global_desc">All 4 tracks (Python + Vibe + Prompt + ML) — Complete bootcamp</p>
                         <div class="text-2xl line-through text-gray-500">1050 DT</div>
                         <div class="text-4xl font-bold text-primary-600">800 DT</div>
-                        <p class="text-sm text-green-600 dark:text-green-400 font-semibold i18n" data-key="track_global_save">خصم 25% — عرض محدود</p>
-                        <a href="../register/index.html?camp=coding&track=bundle" class="mt-4 inline-block bg-primary-600 text-white px-6 py-2 rounded-lg font-semibold w-full hover:bg-primary-700 transition">🎓 سجّل الآن →</a>
+                        <p class="text-sm text-green-600 dark:text-green-400 font-semibold i18n" data-key="track_global_save">Save 25% — limited offer</p>
+                        <a href="../register/index.html?camp=coding&track=bundle" class="mt-4 inline-block bg-primary-600 text-white px-6 py-2 rounded-lg font-semibold w-full hover:bg-primary-700 transition">🎓 Register Now →</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Competition & Rewards (no external partner mentions) -->
+        <!-- Partnership & Mentorship -->
         <section class="py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="card rounded-xl p-8"><i class="fas fa-trophy text-5xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-2xl font-heading font-bold i18n" data-key="comp_title">🏆 Compétition finale
+                        </h3>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 i18n" data-key="comp_desc">Présente ton projet
+                            robotique (Arduino + app ou Micro:bit + IA) — gagne des prix incroyables !</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-medal text-primary-500"></i> <span
+                                    class="i18n" data-key="reward1">🥇 1er prix : Kit robotique avancé + carte
+                                    Arduino</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-award text-primary-500"></i> <span
+                                    class="i18n" data-key="reward2">🥈 2ème prix : Micro:bit starter pack +
+                                    accessoires</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-certificate text-primary-500"></i>
+                                <span class="i18n" data-key="reward3">Certificats pour tous + mise en avant sur
+                                    growthzone.tn</span></li>
+                        </ul>
+                    </div>
                     <div class="card rounded-xl p-8 text-center">
                         <i class="fas fa-handshake text-4xl text-primary-500 mb-3"></i>
-                        <h3 class="text-2xl font-heading font-bold i18n" data-key="partner_title">الشراكة والتأطير</h3>
-                        <p><strong class="i18n" data-key="taught_by">تنظيم وإشراف:</strong> <span class="text-primary-500 font-semibold">GrowthZone + Plulai</span></p>
-                        <p class="mt-4 text-gray-600 dark:text-gray-300 i18n" data-key="partner_desc">GrowthZone يوفّر المدربين الخبراء والمنهجية العصرية وفضاء الإبداع في تونس.</p>
-                        <div class="mt-6 flex justify-center gap-6">
-                            <span class="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm">🤝 Official Partner</span>
-                            <span class="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm">🚀 NextGen Coding Camp</span>
-                        </div>
+                        <h3 class="text-2xl font-heading font-bold i18n" data-key="partner_title">Partnership & Mentorship</h3>
+                        <p><strong class="i18n" data-key="taught_by">Organized by:</strong> <span class="text-primary-500 font-semibold">GrowthZone + Plulai</span></p>
+                        <p class="mt-4 text-gray-600 dark:text-gray-300 i18n" data-key="partner_desc">GrowthZone provides expert instructors, hands-on curriculum, and a creative space in Tunisia.</p>
+                        <div class="mt-6 flex justify-center gap-6"><span class="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm">🤝 Official Partner</span><span class="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm">🚀 NextGen Coding Camp</span></div>
                     </div>
+                
             </div>
         </section>
 
-        <!-- FAQ Section (keep as is) -->
+        <!-- FAQ Section (fully translatable with data-key) -->
         <section id="faq" class="py-16 px-5 bg-white dark:bg-gray-900/40 scroll-mt-20">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-3" data-i18n="faq-title">Frequently Asked Questions</h2>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-i18n="faq-sub">Find answers to common questions about our bootcamps</p>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-3 i18n" data-key="faq_title">Frequently Asked Questions</h2>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto i18n" data-key="faq_sub">Find answers to common questions about our bootcamps</p>
                 </div>
                 <div class="space-y-4">
-                    <div class="faq-item card-glass rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition" data-faq="1"><span class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="faq-q1">What age is the bootcamp suitable for?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700" data-i18n="faq-a1">Our bootcamps are designed for ages 13-18. We have different levels within each track to accommodate beginners through intermediate learners.</div></div>
-                    <div class="faq-item card-glass rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition" data-faq="2"><span class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="faq-q2">How long is each bootcamp?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700" data-i18n="faq-a2">This bootcamp runs for 5 weeks. Sessions are flexible: Mornings or Evenings daily.</div></div>
-                    <div class="faq-item card-glass rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition" data-faq="3"><span class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="faq-q3">Do I need prior experience in coding or robotics?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700" data-i18n="faq-a3">No experience required! All our bootcamps start from the fundamentals and are designed for beginners. We'll teach you everything from scratch.</div></div>
-                    <div class="faq-item card-glass rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition" data-faq="4"><span class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="faq-q4">What materials or equipment do I need?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700" data-i18n="faq-a4">We recommend a capable laptop.</div></div>
-                    <div class="faq-item card-glass rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition" data-faq="6"><span class="text-lg font-semibold text-gray-900 dark:text-white" data-i18n="faq-q6">Is there a certificate at the end?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700" data-i18n="faq-a6">Yes! All participants receive a certificate of completion along with a portfolio of projects created during the bootcamp and prizes for competitions winners.</div></div>
+                    <div class="faq-item card rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition"><span class="text-lg font-semibold text-gray-900 dark:text-white i18n" data-key="faq_q1">What age is the bootcamp suitable for?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700 i18n" data-key="faq_a1">Our bootcamps are designed for ages 13-18. We have different levels within each track to accommodate beginners through intermediate learners.</div></div>
+                    <div class="faq-item card rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition"><span class="text-lg font-semibold text-gray-900 dark:text-white i18n" data-key="faq_q2">How long is each bootcamp?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700 i18n" data-key="faq_a2">This bootcamp runs for 5 weeks. Sessions are flexible: Mornings or Evenings daily.</div></div>
+                    <div class="faq-item card rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition"><span class="text-lg font-semibold text-gray-900 dark:text-white i18n" data-key="faq_q3">Do I need prior experience in coding or robotics?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700 i18n" data-key="faq_a3">No experience required! All our bootcamps start from the fundamentals and are designed for beginners. We'll teach you everything from scratch.</div></div>
+                    <div class="faq-item card rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition"><span class="text-lg font-semibold text-gray-900 dark:text-white i18n" data-key="faq_q4">What materials or equipment do I need?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700 i18n" data-key="faq_a4">We recommend a capable laptop.</div></div>
+                    <div class="faq-item card rounded-xl overflow-hidden"><button class="faq-toggle w-full text-left p-6 flex items-center justify-between hover:bg-primary-50 dark:hover:bg-primary-900/10 transition"><span class="text-lg font-semibold text-gray-900 dark:text-white i18n" data-key="faq_q6">Is there a certificate at the end?</span><i class="fas fa-chevron-down text-primary-500 transition-transform"></i></button><div class="faq-content hidden px-6 pb-6 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-700 i18n" data-key="faq_a6">Yes! All participants receive a certificate of completion along with a portfolio of projects created during the bootcamp and prizes for competitions winners.</div></div>
                 </div>
             </div>
         </section>
@@ -346,9 +315,9 @@
         <!-- CTA Section -->
         <section class="py-16 bg-primary-500 text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="cta_title">مستعد تبرمج المستقبل؟</h2>
-                <p class="text-lg text-primary-100 max-w-3xl mx-auto mb-6 i18n" data-key="cta_desc">انضم لمعسكر NextGen Coding — أماكن محدودة، موجهين خبراء من GrowthZone، ومسابقة مشاريع ممتعة.</p>
-                <a href="../register/index.html?camp=coding&track=bundle" class="inline-block bg-white text-primary-600 hover:bg-gray-100 font-medium px-8 py-3 rounded-lg shadow-lg"><span class="i18n" data-key="cta_btn">احجز مقعدك الآن ←</span></a>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="cta_title">Ready to Code the Future?</h2>
+                <p class="text-lg text-primary-100 max-w-3xl mx-auto mb-6 i18n" data-key="cta_desc">Join the NextGen Coding Camp — limited spots, expert mentors from GrowthZone, and epic project competition.</p>
+                <a href="../register/index.html?camp=coding&track=bundle" class="inline-block bg-white text-primary-600 hover:bg-gray-100 font-medium px-8 py-3 rounded-lg shadow-lg"><span class="i18n" data-key="cta_btn">Reserve Your Spot →</span></a>
             </div>
         </section>
     </main>
@@ -357,18 +326,18 @@
         <div class="max-w-7xl mx-auto px-4"><span class="i18n" data-key="footer_text">© 2026 Growth Zone — Summer bootcamps for children and youth. All rights reserved.</span></div>
     </footer>
 
-    <!-- I18n + Language Toggle JavaScript with Tunisian Arabic -->
+    <!-- I18n + Language Toggle (English / French) -->
     <script>
         const translations = {
             en: {
-                nav_curriculum: "Curriculum", nav_audience: "Who is for", nav_pricing: "Tracks", nav_faq: "FAQ", register_btn: "Register Now",
+                nav_curriculum: "Curriculum", nav_audience: "Who is for", register_btn: "Register Now",
                 hero_title: "NextGen <span class='gradient-text'>Coding Camp</span>", hero_desc: "AI & Python Bootcamp for teens (ages 13-18). Learn Python, AI models, creative coding, and responsible tech — hosted by GrowthZone in partnership with <a href='https://www.plulai.com' target='_blank' class='text-primary-500 hover:underline'>Plulai</a>.",
-                hero_cta_register: "Join the Camp", hero_cta_curriculum: "Explore Curriculum", hero_badge: "Limited to 10 participants per group — personal mentoring",
+                hero_cta_register: "Join the Camp", hero_cta_curriculum: "Explore Curriculum", hero_badge: "🎯 Limited spots — next cohort soon",
                 curriculum_title: "Bootcamp <span class='gradient-text'>Curriculum</span>", curriculum_sub: "6 hands-on modules + Final Capstone — build real projects with Python and AI",
                 mod1_title: "🧠 Think Like a Programmer", mod1_1: "Variables, input/output", mod1_2: "if/else decisions & logic", mod1_3: "First lines of code",
                 mod2_title: "⚙️ Problem Solving with Python", mod2_1: "Loops & while", mod2_2: "Lists & iterations", mod2_3: "Functions + Mini Hackathon",
                 mod3_title: "🎨 Creativity Through Code", mod3_1: "Turtle graphics & patterns", mod3_2: "Build a Quiz Game", mod3_3: "Capstone 1: My first Python app",
-                mod4_title: "🤖 Intro to Artificial Intelligence", mod4_1: "What is AI? How machines learn", mod4_2: "Vibe coding", mod4_3: "Prompt engineering",
+                mod4_title: "🤖 Intro to Artificial Intelligence", mod4_1: "What is AI? How machines learn", mod4_2: "Train your first AI model", mod4_3: "Python + AI predictions",
                 mod5_title: "📊 Data & Machine Learning", mod5_1: "Finding patterns in data", mod5_2: "Data visualizations", mod5_3: "Bias & AI ethics",
                 mod6_title: "🌍 Responsible Technology", mod6_1: "Privacy, safety & responsible AI", mod6_2: "Future careers in AI & tech", mod6_3: "Capstone planning workshop",
                 capstone_title: "🏆 Final Capstone Project", capstone_desc: "Build a complete Python + AI project, present to mentors & parents, earn certificate + prizes!",
@@ -382,114 +351,47 @@
                 track_prompt: "Prompt Engineering", track_prompt_desc: "Master AI prompts, build chatbots, and optimize LLM interactions.",
                 track_ml: "Machine Learning", track_ml_desc: "Train models, understand data, and create AI classifiers.",
                 track_global: "🌟 All‑in‑One Package", track_global_desc: "All 4 tracks (Python + Vibe + Prompt + ML) — Complete bootcamp", track_global_save: "Save 25% — limited offer",
-                comp_title: "🏅 Competition & Rewards", comp_desc: "Showcase your final capstone project — win amazing prizes! 🎁",
-                reward1: "1st Prize: Tablet + Robotics Kit", reward2: "2nd Prize: Smart Speaker + Coding merch", reward3: "Certificates for all finalists + featured on GrowthZone",
                 partner_title: "Partnership & Mentorship", taught_by: "Organized by:", partner_desc: "GrowthZone provides expert instructors, hands-on curriculum, and a creative space in Tunisia.",
-                faq_title: "Frequently Asked <span class='gradient-text'>Questions</span>", faq_sub: "Everything about camp, pricing, competition",
-                faq_q1: "What is the age range for this bootcamp?", faq_a1: "Ages 9 to 15 — we adapt to each learner's level, from absolute beginners to young tech enthusiasts.",
-                faq_q2: "How do the competition rewards work?", faq_a2: "At the end of the camp, students present their final capstone project. Winners receive tablets, robotics kits, and certificates. Every participant gets a digital badge and feedback from GrowthZone mentors.",
-                faq_q3: "Is there a certificate after completion?", faq_a3: "Yes! All students receive a certificate of completion signed by GrowthZone. Winners get additional honors.",
-                faq_q4: "Can I register for multiple tracks?", faq_a4: "Absolutely! The 'All‑in‑One' package includes all four tracks at a 25% discount. You can also combine any two tracks — contact us for custom bundles.",
-                faq_q5: "Is there a final competition?", faq_a5: "Yes, each participant presents their project. Amazing prizes from GrowthZone.",
-                cta_title: "Ready to Code the Future?", cta_desc: "Join the NextGen Coding Camp — , expert mentors from GrowthZone+Plulai, and epic project competition.", cta_btn: "Reserve Your Spot →",
+                faq_title: "Frequently Asked Questions", faq_sub: "Find answers to common questions about our bootcamps",
+                faq_q1: "What age is the bootcamp suitable for?", faq_a1: "Our bootcamps are designed for ages 13-18. We have different levels within each track to accommodate beginners through intermediate learners.",
+                faq_q2: "How long is each bootcamp?", faq_a2: "This bootcamp runs for 5 weeks. Sessions are flexible: Mornings or Evenings daily.",
+                faq_q3: "Do I need prior experience in coding or robotics?", faq_a3: "No experience required! All our bootcamps start from the fundamentals and are designed for beginners. We'll teach you everything from scratch.",
+                faq_q4: "What materials or equipment do I need?", faq_a4: "We recommend a capable laptop.",
+                faq_q6: "Is there a certificate at the end?", faq_a6: "Yes! All participants receive a certificate of completion along with a portfolio of projects created during the bootcamp and prizes for competitions winners.",
+                cta_title: "Ready to Code the Future?", cta_desc: "Join the NextGen Coding Camp — limited spots, expert mentors from GrowthZone, and epic project competition.", cta_btn: "Reserve Your Spot →",
                 address: "Growth Zone, Teniour Road km 1, Sfax", "start-date": "⏱️ From June 15, 2026", duration: "5 weeks of innovation", "contact-info": "For more info", footer_text: "© 2026 Growth Zone — Summer bootcamps for children and youth. All rights reserved."
             },
-            ar: {
-                nav_curriculum: "البرنامج",
-                nav_audience: "لشكون هذي",
-                nav_pricing: "الباقات",
-                nav_faq: "الأسئلة",
-                register_btn: "سجّل تو",
-
-                hero_title: "NextGen <span class='gradient-text'>Coding Camp</span>",
-                hero_desc: "معسكر AI وبايثون للأعمار 13-18. تعلّم بايثون، نماذج الذكاء الاصطناعي، البرمجة الإبداعية، والتكنولوجيا المسؤولة — من إعداد GrowthZone.",
-                hero_cta_register: "أنجم معانا",
-                hero_cta_curriculum: "شوف البرنامج",
-                hero_badge: "🎯 أماكن محدودة — الدفعة الجاية قريب",
-
-                curriculum_title: "منهج <span class='gradient-text'>المعسكر</span>",
-                curriculum_sub: "6 وحدات عملية + مشروع ختامي — ابنِ مشاريع حقيقية ببايثون والـ AI",
-                mod1_title: "🧠 فكر كمبرمج",
-                mod1_1: "المتغيرات، إدخال/إخراج",
-                mod1_2: "if/else والمنطق",
-                mod1_3: "أول سطور برمجية",
-                mod2_title: "⚙️ حل المشكلات ببايثون",
-                mod2_1: "الحلقات while",
-                mod2_2: "القوائم والتكرار",
-                mod2_3: "الدوال + هاكاثون صغير",
-                mod3_title: "🎨 الإبداع عبر الكود",
-                mod3_1: "رسومات السلحفاة",
-                mod3_2: "بناء لعبة اختبارات",
-                mod3_3: "المشروع الأول: تطبيق بايثون",
-                mod4_title: "🤖 مقدمة للـ AI",
-                mod4_1: "شنو الـ AI؟ كيف تتعلم الآلات",
-                mod4_2: "درّب أول نموذج AI",
-                mod4_3: "بايثون + توقعات AI",
-                mod5_title: "📊 البيانات و Machine Learning",
-                mod5_1: "اكتشاف الأنماط في البيانات",
-                mod5_2: "تصور البيانات",
-                mod5_3: "التحيز وأخلاقيات AI",
-                mod6_title: "🌍 التكنولوجيا المسؤولة",
-                mod6_1: "الخصوصية، الأمان، AI مسؤول",
-                mod6_2: "مستقبل المهن في AI والتكنولوجيا",
-                mod6_3: "ورشة التخطيط للمشروع الختامي",
-                capstone_title: "🏆 المشروع الختامي",
-                capstone_desc: "ابنِ مشروع كامل بايثون + AI، قدّموا للموجّهين والأهل، تحصل على شهادة وجوائز!",
-
-                audience_title: "لشكون هذي <span class='gradient-text'>الدورة؟</span>",
-                audience_sub: "مبتكرون صغار من 9 إلى 15 سنة يحبون التكنولوجيا ويحبو يبنو مشاريع AI حقيقية",
-                audience_card1_title: "المطور الطموح",
-                audience_card1_desc: "'علمني من الصفر — نحب نبرمج مشاريع AI حقيقية.' مثالي للمبرمجين الجدد.",
-                audience_card2_title: "المبدع",
-                audience_card2_desc: "'نحب الألعاب، الفن، والبرمجة — وريني كيف الـ AI يخلي الحاجات تفاعلية.'",
-                audience_card3_title: "المستكشف الفضولي",
-                audience_card3_desc: "'أعطيني تحديات AI ممتعة — نتعلم بالممارسة.' مشاريع عملية ومسابقات.",
-
-                pricing_title: "شنو الباقة <span class='gradient-text'>اللي تناسبك؟</span>",
-                pricing_sub: "الأسعار بالدينار التونسي (DT) — معسكرات مرنة، تدريب من GrowthZone",
-                track_python: "معسكر بايثون",
-                track_python_desc: "إتقان أساسيات بايثون، المنطق، الحلقات، وبناء أول ألعابك.",
-                track_vibe: "البرمجة الإبداعية",
-                track_vibe_desc: "برمجة إبداعية + فن بالـ AI، صوت، ومشاريع تفاعلية.",
-                track_prompt: "هندسة المطالبات",
-                track_prompt_desc: "إتقان مطالبات الـ AI، بناء chatbots، وتحسين نماذج اللغة.",
-                track_ml: "Machine Learning",
-                track_ml_desc: "تدريب النماذج، فهم البيانات، وإنشاء مصنفات AI.",
-                track_global: "🌟 الحزمة الشاملة",
-                track_global_desc: "جميع المسارات (بايثون + إبداعي + مطالبات + ML) — معسكر كامل",
-                track_global_save: "خصم 25% — عرض محدود",
-
-                comp_title: "🏅 المسابقة والجوائز",
-                comp_desc: "قدّم مشروعك الختامي — واربح جوائز خرافيين! 🎁",
-                reward1: "🥇 الأولى: جهاز لوحي + عدة روبوتات",
-                reward2: "🥈 الثانية: سماعة ذكية + هدايا برمجية",
-                reward3: "شهادات لجميع المشاركين + نشر أعمالك على موقع GrowthZone",
-
-                partner_title: "الشراكة والتأطير",
-                taught_by: "تنظيم وإشراف:",
-                partner_desc: "GrowthZone يوفّر المدربين الخبراء والمنهجية العصرية وفضاء الإبداع في تونس.",
-
-                faq_title: "الأسئلة <span class='gradient-text'>الشائعة</span>",
-                faq_sub: "كل شي تحب تعرفو عن المعسكر، الأسعار، والمسابقة",
-                faq_q1: "شنو الفئة العمرية لهذا المعسكر؟",
-                faq_a1: "من 9 إلى 15 سنة — نواكب كل متعلم حسب مستواه، من مبتدئين إلى شغوفين بالتكنولوجيا.",
-                faq_q2: "كيفاش تشتغل الجوائز في المسابقة؟",
-                faq_a2: "في آخر المعسكر، الطلاب يقدّمو مشاريعهم الختامية. الفايزين يحصلو على أجهزة لوحية، مجموعات روبوتات، وشهادات. كل مشارك ياخو وسام رقمي وتغذية راجعة من مدربي GrowthZone.",
-                faq_q3: "ننجم ناخو شهادة بعد الدورة؟",
-                faq_a3: "إي! جميع الطلاب يحصلون على شهادة إتمام موقعة من GrowthZone. الفايزين في المسابقة يتحصلو على تكريم إضافي.",
-                faq_q4: "ننجم نخدم أكثر من مسار؟",
-                faq_a4: "وطبّي! الحزمة الشاملة تجمعلك جميع المسارات الأربعة بخصم 25%. تنجم حتى تدمج أي مسارين — اتصل بينا للحصول على باقات مخصصة.",
-                faq_q5: "توجد مسابقة في آخر الدورة؟",
-                faq_a5: "إي، كل مشارك يقدّم مشروعه. جوائز رائعة من GrowthZone.",
-
-                cta_title: "مستعد تبرمج l'avenir؟",
-                cta_desc: "انضم لمعسكر NextGen Coding — blassa محدودة، coaches خبراء من GrowthZone، وcompétition de projets wahdha.",
-                cta_btn: "احجز بلاصتك تو ←",
-                address: "Growth Zone، route Teniour km 1، Sfax",
-                "start-date": "⏱️ من 15 جوان 2026",
-                duration: "3 أسابيع دي innovation",
-                "contact-info": "للمزيد d'infos",
-                footer_text: "© 2026 Growth Zone — معسكرات صيفية للأطفال والشباب. Kol chay m7fouẓ."
+            fr: {
+                nav_curriculum: "Programme", nav_audience: "Pour qui", register_btn: "S'inscrire",
+                hero_title: "NextGen <span class='gradient-text'>Coding Camp</span>", hero_desc: "Bootcamp IA & Python pour adolescents (13-18 ans). Apprenez Python, les modèles d'IA, le codage créatif et la technologie responsable — organisé par GrowthZone en partenariat avec <a href='https://www.plulai.com' target='_blank' class='text-primary-500 hover:underline'>Plulai</a>.",
+                hero_cta_register: "Rejoindre le camp", hero_cta_curriculum: "Explorer le programme", hero_badge: "🎯 Places limitées — prochaine session bientôt",
+                curriculum_title: "Programme du <span class='gradient-text'>Bootcamp</span>", curriculum_sub: "6 modules pratiques + Projet final — construisez des projets réels avec Python et l'IA",
+                mod1_title: "🧠 Pensez comme un programmeur", mod1_1: "Variables, entrée/sortie", mod1_2: "Conditions if/else et logique", mod1_3: "Premières lignes de code",
+                mod2_title: "⚙️ Résolution de problèmes avec Python", mod2_1: "Boucles while", mod2_2: "Listes et itérations", mod2_3: "Fonctions + Mini Hackathon",
+                mod3_title: "🎨 Créativité par le code", mod3_1: "Graphismes Turtle", mod3_2: "Créer un jeu questionnaire", mod3_3: "Premier projet : application Python",
+                mod4_title: "🤖 Introduction à l'IA", mod4_1: "Qu'est-ce que l'IA ? Comment les machines apprennent", mod4_2: "Entraînez votre premier modèle d'IA", mod4_3: "Python + prédictions IA",
+                mod5_title: "📊 Données et Machine Learning", mod5_1: "Trouver des motifs dans les données", mod5_2: "Visualisation des données", mod5_3: "Biais et éthique de l'IA",
+                mod6_title: "🌍 Technologie responsable", mod6_1: "Confidentialité, sécurité, IA responsable", mod6_2: "Métiers futurs dans l'IA et la tech", mod6_3: "Atelier de planification du projet final",
+                capstone_title: "🏆 Projet final", capstone_desc: "Construisez un projet complet Python + IA, présentez-le aux mentors et aux parents, obtenez un certificat et des prix !",
+                audience_title: "À qui s'adresse ce <span class='gradient-text'>cours ?</span>", audience_sub: "Jeunes innovateurs de 13 à 18 ans qui aiment la technologie et veulent construire de vrais projets d'IA",
+                audience_card1_title: "Le développeur ambitieux", audience_card1_desc: "« Apprenez-moi à partir de zéro — je veux construire des projets IA réels. » Parfait pour les futurs codeurs.",
+                audience_card2_title: "Le créatif", audience_card2_desc: "« J'aime les jeux, l'art et le code — montrez-moi comment l'IA rend les choses interactives. »",
+                audience_card3_title: "L'explorateur curieux", audience_card3_desc: "« Donnez-moi des défis IA amusants — j'apprends en faisant. » Projets pratiques et compétitions.",
+                pricing_title: "Choisissez votre <span class='gradient-text'>parcours</span>", pricing_sub: "Prix en dinar tunisien (DT) — camps flexibles, encadrement par GrowthZone",
+                track_python: "Bootcamp Python", track_python_desc: "Maîtrisez les bases de Python, la logique, les boucles et créez vos premiers jeux.",
+                track_vibe: "Codage créatif", track_vibe_desc: "Codage créatif + IA, projets interactifs.",
+                track_prompt: "Ingénierie des prompts", track_prompt_desc: "Maîtrisez les prompts d'IA, construisez des chatbots et optimisez les interactions LLM.",
+                track_ml: "Machine Learning", track_ml_desc: "Entraînez des modèles, comprenez les données et créez des classifieurs IA.",
+                track_global: "🌟 Pack Tout-en-un", track_global_desc: "Tous les 4 parcours (Python + Créatif + Prompt + ML) — Bootcamp complet", track_global_save: "Économisez 25% — offre limitée",
+                partner_title: "Partenariat et encadrement", taught_by: "Organisé par :", partner_desc: "GrowthZone fournit des formateurs experts, un programme moderne et un espace créatif en Tunisie.",
+                faq_title: "Questions <span class='gradient-text'>fréquentes</span>", faq_sub: "Tout sur le camp, les prix, la compétition",
+                faq_q1: "Quelle est la tranche d'âge pour ce bootcamp ?", faq_a1: "De 13 à 18 ans — nous nous adaptons au niveau de chaque apprenant, des débutants complets aux passionnés de technologie.",
+                faq_q2: "Combien de temps dure chaque bootcamp ?", faq_a2: "Ce bootcamp dure 5 semaines. Sessions flexibles : matins ou soirs chaque jour.",
+                faq_q3: "Ai-je besoin d'expérience préalable en programmation ?", faq_a3: "Aucune expérience requise ! Tous nos bootcamps commencent par les fondamentaux et sont conçus pour les débutants.",
+                faq_q4: "Quel matériel ou équipement est nécessaire ?", faq_a4: "Nous recommandons un ordinateur portable performant.",
+                faq_q6: "Y a-t-il un certificat à la fin ?", faq_a6: "Oui ! Tous les participants reçoivent un certificat de réalisation accompagné d'un portfolio des projets créés pendant le bootcamp et des prix pour les gagnants des compétitions.",
+                cta_title: "Prêt à coder le futur ?", cta_desc: "Rejoignez le NextGen Coding Camp — places limitées, mentors experts de GrowthZone, et compétition de projets passionnante.", cta_btn: "Réservez votre place →",
+                address: "Growth Zone, route Teniour km 1, Sfax", "start-date": "⏱️ À partir du 15 juin 2026", duration: "5 semaines d'innovation", "contact-info": "Pour plus d'infos", footer_text: "© 2026 Growth Zone — Camps d'été pour enfants et jeunes. Tous droits réservés."
             }
         };
         let currentLang = 'en';
@@ -497,22 +399,23 @@
             currentLang = lang;
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if(translations[lang] && translations[lang][key]) {
+                if(translations[lang] && translations[lang][key] !== undefined) {
                     if(el.innerHTML !== undefined) el.innerHTML = translations[lang][key];
                     else if(el.placeholder) el.placeholder = translations[lang][key];
                     else el.textContent = translations[lang][key];
                 }
             });
-            document.documentElement.lang = lang === 'ar' ? 'ar' : 'en';
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
+            document.documentElement.dir = 'ltr';
             document.getElementById('lang-en').classList.toggle('bg-primary-500', lang === 'en');
             document.getElementById('lang-en').classList.toggle('text-white', lang === 'en');
-            document.getElementById('lang-ar').classList.toggle('bg-primary-500', lang === 'ar');
-            document.getElementById('lang-ar').classList.toggle('text-white', lang === 'ar');
+            document.getElementById('lang-fr').classList.toggle('bg-primary-500', lang === 'fr');
+            document.getElementById('lang-fr').classList.toggle('text-white', lang === 'fr');
         }
         document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-        document.getElementById('lang-ar').addEventListener('click', () => setLanguage('ar'));
+        document.getElementById('lang-fr').addEventListener('click', () => setLanguage('fr'));
         setLanguage('en');
+
         // smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -525,8 +428,8 @@
                 }
             });
         });
+        // FAQ toggles
         document.querySelectorAll('.faq-toggle').forEach(button => { button.addEventListener('click', () => { const faqItem = button.closest('.faq-item'); const content = faqItem.querySelector('.faq-content'); const icon = button.querySelector('i'); document.querySelectorAll('.faq-item').forEach(item => { if (item !== faqItem) { item.querySelector('.faq-content').classList.add('hidden'); item.querySelector('i').style.transform = 'rotate(0deg)'; } }); content.classList.toggle('hidden'); icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)'; }); });
-    
     </script>
 </body>
 </html>
