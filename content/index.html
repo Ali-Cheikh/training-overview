@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Content Creator Camp | GrowthZone Summer 2026</title>
+    <meta name="description" content="GrowthZone Summer 2026 — Content Creator Camp: CapCut, Canva & AI content. 450 DT bundle. Video editing & design, Sfax.">
+
+    <!-- Preload -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" as="style">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e' },
+                        gray: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Space Grotesk', 'sans-serif'] },
+                    animation: { 'fade-in': 'fadeIn 0.5s ease-in', 'float': 'float 6s ease-in-out infinite' },
+                    keyframes: { fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } }, float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } } }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { color-scheme: light dark; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; transition: background-color 0.3s ease; }
+        @media (prefers-color-scheme: dark) { body { background-color: #0f172a; color: #f8fafc; } }
+        .gradient-text { background: linear-gradient(90deg, #0ea5e9 0%, #3b82f6 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.5); transition: all 0.3s ease; }
+        @media (prefers-color-scheme: dark) { .card { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(30, 41, 59, 0.5); } }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.2); }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background-color: #0ea5e9; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .animate-delay-1 { animation-delay: 0.2s; }
+        .animate-delay-2 { animation-delay: 0.4s; }
+        @media (max-width: 640px) {
+            .card { padding: 1.25rem !important; }
+            header nav > .flex.items-center.gap-3 { width: 100%; justify-content: center; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:bg-white focus:dark:bg-gray-900 focus:px-4 focus:py-2 focus:rounded focus:z-50">Skip to content</a>
+
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-lg bg-primary-500 flex items-center justify-center"><i class="fas fa-video text-white text-lg"></i></div>
+                <span class="text-xl font-heading font-bold">Content<span class="gradient-text">Creator</span></span>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#curriculum" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_curriculum">البرنامج</a>
+                <a href="#target-audience" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_audience">تحبها؟ شكون هذي الدورة</a>
+                <a href="#pricing" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_pricing">الباقات والأسعار</a>
+                <a href="#faq" class="nav-link text-gray-700 dark:text-gray-300 font-medium i18n" data-key="nav_faq">الأسئلة اللي تزيد</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="lang-ar" class="px-3 py-1 rounded-md text-sm font-medium border border-gray-300 dark:border-gray-700 hover:bg-primary-100">🇸🇦 عربي</button>
+                <button id="lang-en" class="px-3 py-1 rounded-md text-sm font-medium bg-primary-500 text-white">🇬🇧 EN</button>
+                <a href="../register/index.html?camp=content&track=bundle" class="bg-primary-500 hover:bg-primary-600 text-white px-5 py-2 rounded-lg font-medium shadow-md"><span class="i18n" data-key="register_btn">سجّل تو</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl font-heading font-bold leading-tight i18n" data-key="hero_title">معسكر <span class="gradient-text">صانع المحتوى</span></h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 i18n" data-key="hero_desc">تعلّم CapCut وCanva وكيف تخدم الذكاء الاصطناعي باش تنتج محتوى. مونتاج فيديو، تصميم، وإستراتيجية — من إعداد GrowthZone.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="../register/index.html?camp=content&track=bundle" class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-medium text-center shadow-lg"><span class="i18n" data-key="hero_cta_register">أنجم معانا</span></a>
+                        <a href="#curriculum" class="border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg font-medium text-center hover:bg-gray-50 dark:hover:bg-gray-800"><span class="i18n" data-key="hero_cta_curriculum">شوف البرنامج</span></a>
+                    </div>
+                    <div class="flex items-center pt-4">
+                        <div class="flex -space-x-2"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600"></div><div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600"></div><div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500"></div></div>
+                        <div class="ml-4 text-gray-600 dark:text-gray-400 i18n" data-key="hero_badge">🎬 أماكن محدودة — الدفعة الجاية قريب</div>
+                    </div>
+                </div>
+                <div class="relative animate-fade-in animate-delay-1">
+                    <div class="absolute -top-10 -left-10 w-64 h-64 bg-primary-400 rounded-full mix-blend-multiply dark:mix-blend-screen opacity-20 filter blur-2xl animate-float"></div>
+                    <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-purple-400 rounded-full mix-blend-multiply dark:mix-blend-screen opacity-20 filter blur-2xl animate-float animate-delay-2"></div>
+                    <div class="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl">
+                        <div class="p-3 border-b border-gray-200 dark:border-gray-700 flex items-center space-x-2 bg-gray-50 dark:bg-gray-700"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><div class="w-2.5 h-2.5 rounded-full bg-green-500"></div></div>
+                        <div class="p-6 font-mono text-sm"><div class="text-primary-500"># ContentCreatorCamp 🎥</div><div class="mt-2">✨ "Edit like a pro with CapCut + Canva"</div><div class="mt-1 text-gray-500">✍️ Prompt: "Génère 10 idées Reels pour Instagram"</div><div class="mt-1 flex items-center gap-2"><span class="text-primary-500">➜</span> <span>IA → Script, visuel, storyboard</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curriculum Section (CapCut + Canva + AI Content) -->
+        <section id="curriculum" class="py-16 bg-gray-50 dark:bg-gray-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="curriculum_title">البرنامج <span class="gradient-text">المتكامل</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="curriculum_sub">3 تدريبات مكثّفة: مونتاج، تصميم، ومحتوى بالـ AI — كل وحدة وفيها مشروع تنجزه بنفسك.</p>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- CapCut Column -->
+                    <div class="card rounded-xl p-6">
+                        <div class="flex items-center gap-3 mb-4"><i class="fab fa-tiktok text-3xl text-primary-500"></i><h3 class="text-2xl font-heading font-bold">CapCut <span class="text-sm font-normal">Montage vidéo</span></h3></div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_1">الوحدة 1: نكتشفو CapCut (الواجهة، مشروع جديد)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_2">الوحدة 2: أساسيات المونتاج (التايملاين، قص ولصق)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_3">الوحدة 3: نضيفو عناوين ونصوص متحركة</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_4">الوحدة 4: ترانزيشن ومؤثرات</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_5">الوحدة 5: الصوت (موسيقى، مؤثرات، تحكم في الحجم)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_6">الوحدة 6: أدوات عملية (تنظيم الكليبات، التزامن)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_7">الوحدة 7: الترجمة (تلقائية وتعديل)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_8">الوحدة 8: تقنيات متقدّمة (تثبيت الفيديو، شاشة خضراء)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cc_9">الوحدة 9: تصدير ونشر على وسائل التواصل</span></li>
+                            <li class="flex items-start font-semibold text-primary-600 mt-2"><i class="fas fa-star text-yellow-500 mt-1 mr-2"></i><span class="i18n" data-key="cc_final">🎬 مشروع ختامي: فيديو كامل من A لـ Z</span></li>
+                        </ul>
+                    </div>
+                    <!-- Canva Column -->
+                    <div class="card rounded-xl p-6">
+                        <div class="flex items-center gap-3 mb-4"><i class="fab fa-canva text-3xl text-primary-500"></i><h3 class="text-2xl font-heading font-bold">Canva <span class="text-sm font-normal">Design IA</span></h3></div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cv_1">الوحدة 1: نكتشفو Canva (حساب، واجهة، نماذج)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cv_2">الوحدة 2: أساسيات التصميم (ألوان، خطوط، محاذاة)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cv_3">الوحدة 3: أدوات Canva (عناصر، أشكال، صور، طبقات)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cv_4">الوحدة 4: وسائل التواصل (منشور وستوري إنستغرام، بانر فيسبوك)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cv_5">الوحدة 5: عروض تقديمية (شرائح، أنيماشن، ترانزيشن)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="cv_6">الوحدة 6: Canva AI (Magic Design، توليد صور، حذف الخلفية)</span></li>
+                            <li class="flex items-start font-semibold text-primary-600 mt-2"><i class="fas fa-star text-yellow-500 mt-1 mr-2"></i><span class="i18n" data-key="cv_final">🎨 مشروع ختامي: بورتفوليو كامل (أفيش + منشور + ستوري + عرض 3 شرائح)</span></li>
+                        </ul>
+                    </div>
+                    <!-- Création de Contenu avec IA Column -->
+                    <div class="card rounded-xl p-6">
+                        <div class="flex items-center gap-3 mb-4"><i class="fas fa-robot text-3xl text-primary-500"></i><h3 class="text-2xl font-heading font-bold">AI Content <span class="text-sm font-normal">Stratégie & création</span></h3></div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="ai_1">الوحدة 1: بناء إستراتيجية المحتوى بالـ AI (تحديد أهدافك، ثيم)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="ai_2">الوحدة 2: فهم جمهورك (تحب شنو؟ كيفاش تجذبهم)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="ai_3">الوحدة 3: أسلوبك وهويتك (تميز وجذب الناس)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="ai_4">الوحدة 4: توليد أفكار بالـ AI (أركان المحتوى، كالاندر)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-primary-500 mt-1 mr-2 text-xs"></i><span class="i18n" data-key="ai_5">الوحدة 5: إنشاء المحتوى بالـ AI (سيناريوهات، منشورات، تكييف للمنصات)</span></li>
+                            <li class="flex items-start font-semibold text-primary-600 mt-2"><i class="fas fa-star text-yellow-500 mt-1 mr-2"></i><span class="i18n" data-key="ai_final">🚀 مشروع ختامي: تحدد هويتك + 3 أركان + 10 أفكار + 1 سيناريو فيديو + 1 منشور كامل بـ Canva</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 text-center text-gray-500 text-sm i18n" data-key="curriculum_note">✨ كل تدريب فيه مشروع عملي وجلسة تغذية راجعة مع المدرّب</div>
+            </div>
+        </section>
+
+        <!-- Target Audience (Content Creator Focus) -->
+        <section id="target-audience" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="audience_title">لشكون هذي <span class="gradient-text">الدورة؟</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_sub">أي واحد ينجم يستفيد — مبتدئ أو عندو خبرة، المهم عندك شغف للإبداع.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">1</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card1_title">📱 إللي يحب يصنع فيديوهات</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card1_desc">تحب تنتج Reels وTikToks بمستوى احترافي بدون معدات غالية؟ CapCut + AI يكفوك.</p></div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">2</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card2_title">🎨 الفريلانسر المبدع</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card2_desc">تخدم على روحك وتحتاج تلقائي المحتوى وتصمم بسرعة؟ هذي الدورة تحل مشاكلك.</p></div>
+                    <div class="card rounded-xl p-6"><div class="flex items-center mb-4"><div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 font-bold mr-4">3</div><h3 class="text-xl font-heading font-bold i18n" data-key="audience_card3_title">🧠 مدير صفحات ومجتمعات</h3></div><p class="text-gray-600 dark:text-gray-400 i18n" data-key="audience_card3_desc">زيد إنتاجيتك بالتخطيط بالـ AI، مونتاج خفيف، وتصاميم جاهزة.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING CARDS (CapCut 200, Canva 200, AI Content 200, Global 450) -->
+        <section id="pricing" class="py-16 bg-gray-50 dark:bg-gray-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="pricing_title">شنو الباقة <span class="gradient-text">اللي تناسبك؟</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="pricing_sub">الأسعار بالدينار التونسي (DT) — كل دورة عملية وشهادة معتمدة من GrowthZone</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- CapCut 200 DT -->
+                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition">
+                        <i class="fas fa-film text-4xl text-primary-500 mb-3"></i>
+                        <h3 class="text-2xl font-heading font-bold">CapCut <span class="text-sm">Pro</span></h3>
+                        <div class="text-3xl font-bold my-2">200 <span class="text-lg">DT</span></div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_capcut_desc">مونتاج فيديو شامل: مؤثرات، ترجمة، شاشة خضراء، تصدير احترافي.</p>
+                        <a href="../register/index.html?camp=content&track=capcut" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">سجّل →</a>
+                    </div>
+                    <!-- Canva 200 DT -->
+                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition">
+                        <i class="fas fa-palette text-4xl text-purple-500 mb-3"></i>
+                        <h3 class="text-2xl font-heading font-bold">Canva <span class="text-sm">Design</span></h3>
+                        <div class="text-3xl font-bold my-2">200 <span class="text-lg">DT</span></div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_canva_desc">تصميم جرافيك + ميزات Canva بالـ AI، مخصصة للسوشيال ميديا والعروض.</p>
+                        <a href="../register/index.html?camp=content&track=canva" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">سجّل →</a>
+                    </div>
+                    <!-- Contenu avec IA 200 DT -->
+                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition">
+                        <i class="fas fa-magic text-4xl text-yellow-500 mb-3"></i>
+                        <h3 class="text-2xl font-heading font-bold">AI Content</h3>
+                        <div class="text-3xl font-bold my-2">200 <span class="text-lg">DT</span></div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm i18n" data-key="track_ia_desc">إستراتيجية، سيناريوهات، تقويم محتوى باستخدام ChatGPT وأدوات الذكاء الاصطناعي.</p>
+                        <a href="../register/index.html?camp=content&track=ai" class="mt-4 inline-block bg-primary-500 text-white px-5 py-2 rounded-lg w-full font-medium hover:bg-primary-600 transition">سجّل →</a>
+                    </div>
+                    <!-- Formation Globale (-20%) = 450 DT -->
+                    <div class="card rounded-xl p-6 text-center hover:scale-105 transition border-2 border-primary-300 bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20">
+                        <i class="fas fa-crown text-4xl text-primary-600 mb-3"></i>
+                        <h3 class="text-2xl font-heading font-bold i18n" data-key="track_global_short">🌟 الباقة الكاملة</h3>
+                        <div class="text-2xl line-through text-gray-500">600 DT</div>
+                        <div class="text-4xl font-bold text-primary-600">450 DT</div>
+                        <p class="text-sm font-semibold text-green-600 dark:text-green-400 i18n" data-key="track_global_save">Save 25% — all modules</p>
+                        <p class="text-xs text-gray-500 mt-1 i18n" data-key="track_global_desc">CapCut + Canva + AI Content + جميع المشاريع</p>
+                        <a href="../register/index.html?camp=content&track=bundle" class="mt-4 inline-block bg-primary-600 text-white px-5 py-2 rounded-lg w-full font-semibold hover:bg-primary-700 transition">🎓 سجّل الآن →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competition & Rewards -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div class="card rounded-xl p-8">
+                        <i class="fas fa-trophy text-5xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-2xl font-heading font-bold i18n" data-key="comp_title">🏅 Competition & Rewards</h3>
+                        <p class="mt-3 text-gray-600 dark:text-gray-300 i18n" data-key="comp_desc">Present your final project — video, design, or content strategy — and win amazing prizes!</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-medal text-primary-500"></i> <span class="i18n" data-key="reward1">🥇 1st prize: Pro editing kit + Canva Pro subscription</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-award text-primary-500"></i> <span class="i18n" data-key="reward2">🥈 2nd prize: Ring light + microphone + merch</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-certificate text-primary-500"></i> <span class="i18n" data-key="reward3">Certificates for all + featured on growthzone.tn</span></li>
+                        </ul>
+                    </div>
+                    <div class="card rounded-xl p-8 text-center">
+                        <i class="fas fa-chalkboard-teacher text-4xl text-primary-500 mb-3"></i>
+                        <h3 class="text-2xl font-heading font-bold i18n" data-key="partner_title">Organized by GrowthZone</h3>
+                        <p class="mt-4 text-gray-600 dark:text-gray-300 i18n" data-key="partner_desc">GrowthZone provides expert content mentors, a creative space, and personalized follow-up for every young creator.</p>
+                        <div class="mt-6 flex justify-center gap-6 flex-wrap">
+                            <span class="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm">🎬 Video & Design</span>
+                            <span class="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm">🚀 Creator Camp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 bg-gray-50 dark:bg-gray-900/50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="faq_title">نعاونك <span class="gradient-text">جاوبناك</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 i18n" data-key="faq_sub">كل شي تحب تعرفو عن الدورات، الأسعار، والمسابقة</p>
+                </div>
+                <div class="space-y-4">
+                    <details class="card rounded-xl p-6 group"><summary class="flex justify-between items-center cursor-pointer list-none"><h3 class="text-lg font-heading font-bold i18n" data-key="faq_q1">نحتاج مواد ومعدات غاليين؟</h3><div class="text-primary-500 group-open:rotate-180 transition"><i class="fas fa-chevron-down"></i></div></summary><div class="pt-4"><p class="text-gray-600 dark:text-gray-400 i18n" data-key="faq_a1">لا، كمبيوتر عادي ولا حتى تلفونة (لتطبيق CapCut) ينجم. Canva وأدوات الذكاء الاصطناعي كامل بالإنترنت.</p></div></details>
+                    <details class="card rounded-xl p-6 group"><summary class="flex justify-between items-center cursor-pointer list-none"><h3 class="text-lg font-heading font-bold i18n" data-key="faq_q2">التدوير حضوري ولا أونلاين؟</h3><div class="text-primary-500 group-open:rotate-180 transition"><i class="fas fa-chevron-down"></i></div></summary><div class="pt-4"><p class="text-gray-600 dark:text-gray-400 i18n" data-key="faq_a2">هايبرد: تقدر تحضر عند GrowthZone ولا تتبع أونلاين مع متابعة شخصية.</p></div></details>
+                    <details class="card rounded-xl p-6 group"><summary class="flex justify-between items-center cursor-pointer list-none"><h3 class="text-lg font-heading font-bold i18n" data-key="faq_q3">بعد الدورة تنجم تاخو شهادة؟</h3><div class="text-primary-500 group-open:rotate-180 transition"><i class="fas fa-chevron-down"></i></div></summary><div class="pt-4"><p class="text-gray-600 dark:text-gray-400 i18n" data-key="faq_a3">إي، شهادة رسمية موقّعة من GrowthZone، معترف بيها في المجال.</p></div></details>
+                    <details class="card rounded-xl p-6 group"><summary class="flex justify-between items-center cursor-pointer list-none"><h3 class="text-lg font-heading font-bold i18n" data-key="faq_q4">ننجم نخدم أكثر من باقة؟</h3><div class="text-primary-500 group-open:rotate-180 transition"><i class="fas fa-chevron-down"></i></div></summary><div class="pt-4"><p class="text-gray-600 dark:text-gray-400 i18n" data-key="faq_a4">Bien sûr! La pack complète تجمع CapCut، Canva و l'AI بخصم 25%.</p></div></details>
+                    <details class="card rounded-xl p-6 group"><summary class="flex justify-between items-center cursor-pointer list-none"><h3 class="text-lg font-heading font-bold i18n" data-key="faq_q5">توجد مسابقة في آخر الدورة؟</h3><div class="text-primary-500 group-open:rotate-180 transition"><i class="fas fa-chevron-down"></i></div></summary><div class="pt-4"><p class="text-gray-600 dark:text-gray-400 i18n" data-key="faq_a5">إي، كل مشارك يقدّم مشروعه (فيديو، تصميم، ولا إستراتيجية). جوائز رائعة من GrowthZone.</p></div></details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Info Section (address, phone, IG, web) -->
+        <section class="py-12 border-y border-gray-200 dark:border-gray-800 bg-gradient-to-r from-primary-50/30 to-purple-50/30 dark:from-primary-950/20 dark:to-purple-950/20">
+            <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="flex flex-col items-center gap-2"><i class="fas fa-map-pin text-primary-500 text-2xl"></i><div class="font-medium i18n" data-key="address">Growth Zone, Teniour Road km 1, Sfax</div></div>
+                    <div class="flex flex-col items-center gap-2"><i class="fas fa-calendar-alt text-primary-500 text-2xl"></i><div><span class="i18n" data-key="start-date">⏱️ من 15 جوان 2026</span><br><span class="text-sm text-gray-500 i18n" data-key="duration">3 أسابيع من الإبداع</span></div></div>
+                    <div class="flex flex-col items-center gap-2"><i class="fas fa-phone-alt text-primary-500 text-2xl"></i><div><a href="tel:57034492" class="hover:text-primary-600 font-bold">📞 57 034 492</a><br><span class="i18n" data-key="contact-info">للاستفسار</span></div></div>
+                    <div class="flex flex-col items-center gap-2"><i class="fab fa-instagram text-primary-500 text-2xl"></i><div><a href="https://www.instagram.com/growthzonespace" target="_blank" class="hover:text-primary-500">@growthzonespace</a><br><a href="https://growthzone.tn" target="_blank" class="text-sm">growthzone.tn</a></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section class="py-16 bg-primary-500 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4 i18n" data-key="cta_title">مستعد تبدع معانا؟</h2>
+                <p class="text-lg text-primary-100 max-w-3xl mx-auto mb-6 i18n" data-key="cta_desc">انضم لمعسكر صانع المحتوى — أماكن محدودة، متتبّعين من GrowthZone، ومشاريع تكافئك.</p>
+                <a href="../register/index.html?camp=content&track=bundle" class="inline-block bg-white text-primary-600 hover:bg-gray-100 font-medium px-8 py-3 rounded-lg shadow-lg"><span class="i18n" data-key="cta_btn">سجل مكانك تو ←</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 mt-8 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4"><span class="i18n" data-key="footer_text">© 2026 Growth Zone — Summer bootcamps for children and youth. All rights reserved.</span></div>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                nav_curriculum: "Curriculum", nav_audience: "Who is this for", nav_pricing: "Tracks", nav_faq: "FAQ", register_btn: "Register Now",
+                hero_title: "Content <span class='gradient-text'>Creator Camp</span>", hero_desc: "Master CapCut, Canva & AI content creation. Video editing, graphic design, content strategy — by GrowthZone.",
+                hero_cta_register: "Join the Camp", hero_cta_curriculum: "Explore Curriculum", hero_badge: "🎬 Limited seats — next cohort soon",
+                curriculum_title: "Complete <span class='gradient-text'>Program</span>", curriculum_sub: "3 intensive trainings: editing, design & AI content — with final projects.",
+                cc_1: "Module 1: Discover CapCut (interface, project)", cc_2: "Module 2: Basic editing (timeline, cutting)", cc_3: "Module 3: Titles & animated text", cc_4: "Module 4: Transitions & effects", cc_5: "Module 5: Audio (music, sound effects)", cc_6: "Module 6: Practical tools (clip management, sync)", cc_7: "Module 7: Subtitles (auto + custom)", cc_8: "Module 8: Advanced (stabilization, green screen)", cc_9: "Module 9: Export & social media publishing", cc_final: "🎬 Final project: Complete video production",
+                cv_1: "Module 1: Discover Canva (account, interface, templates)", cv_2: "Module 2: Design basics (colors, fonts, alignment)", cv_3: "Module 3: Canva tools (elements, shapes, layers)", cv_4: "Module 4: Social media (IG post/story, FB banner)", cv_5: "Module 5: Presentations (slides, animations)", cv_6: "Module 6: Canva AI (Magic Design, image gen, background)", cv_final: "🎨 Final portfolio: poster + IG post + story + 3-slide presentation",
+                ai_1: "Module 1: Content strategy with AI (goals, theme)", ai_2: "Module 2: Understanding your audience (personas)", ai_3: "Module 3: Find your style & identity", ai_4: "Module 4: Generate ideas with AI (pillars, calendar)", ai_5: "Module 5: Create content with AI (scripts, visuals, adaptation)", ai_final: "🚀 Final project: universe, 3 pillars, 10 ideas, 1 script, 1 Canva post",
+                curriculum_note: "✨ Each training includes a hands-on project and personalized feedback session",
+                audience_title: "Who is this <span class='gradient-text'>for?</span>", audience_sub: "Any creator wanting to master video, design & AI — beginners welcome.",
+                audience_card1_title: "📱 Future influencer", audience_card1_desc: "Produce Reels/TikToks without expensive gear. CapCut + AI is all you need.",
+                audience_card2_title: "🎨 Creative freelancer", audience_card2_desc: "Automate your content, design visuals with Canva, generate client content with AI.",
+                audience_card3_title: "🧠 Community manager", audience_card3_desc: "Boost productivity: AI content planning, fast editing, custom design.",
+                pricing_title: "Choose your <span class='gradient-text'>Path</span>", pricing_sub: "Prices in Tunisian Dinar (DT) — practical courses, certified by GrowthZone",
+                track_capcut_desc: "Complete video editing: effects, subtitles, green screen, pro export.",
+                track_canva_desc: "Graphic design + Canva AI, social media, presentations.",
+                track_ia_desc: "Strategy, scripts, editorial calendar with ChatGPT & AI tools.",
+                track_global_short: "🌟 Global Creator", track_global_desc: "CapCut + Canva + AI Content + full projects", track_global_save: "Save 25% — all modules",
+                comp_title: "🏅 Competition & Rewards", comp_desc: "Present your final project — video, design, or content strategy — and win amazing prizes!", reward1: "🥇 1st prize: Pro editing kit + Canva Pro subscription", reward2: "🥈 2nd prize: Ring light + microphone + merch", reward3: "Certificates for all + featured on growthzone.tn", partner_title: "Organized by GrowthZone", partner_desc: "GrowthZone provides expert content mentors, a creative space, and personalized follow-up for every young creator.",
+                faq_title: "Frequently Asked <span class='gradient-text'>Questions</span>", faq_sub: "Everything about trainings, prices and competition",
+                faq_q1: "Do I need professional equipment?", faq_a1: "No, a computer or even a smartphone (for CapCut) is enough. Canva & AI tools work online.",
+                faq_q2: "Are the courses in-person or online?", faq_a2: "Hybrid: in-person at GrowthZone or online with personalized follow-up.",
+                faq_q3: "Will I get a certificate?", faq_a3: "Yes, an official GrowthZone certificate recognized in the creative industry.",
+                faq_q4: "Can I combine multiple tracks?", faq_a4: "Absolutely! The 'Global Creator' bundle includes CapCut, Canva & AI Content at -25%.",
+                faq_q5: "Is there a final competition?", faq_a5: "Yes, each participant presents their video, design or strategy. Amazing prizes from GrowthZone.",
+                cta_title: "Ready to become a content creator?", cta_desc: "Join the Content Creator Camp — limited seats, GrowthZone mentors, rewarded projects.", cta_btn: "Register Now →",
+                address: "Growth Zone, Teniour Road km 1, Sfax", "start-date": "⏱️ From June 15, 2026", duration: "3 weeks of innovation", "contact-info": "For more info", footer_text: "© 2026 Growth Zone — Summer bootcamps for children and youth. All rights reserved."
+            },
+            ar: {
+                nav_curriculum: "البرنامج", nav_audience: "تحبها؟ شكون هذي الدورة", nav_pricing: "الباقات والأسعار", nav_faq: "الأسئلة اللي تزيد", register_btn: "سجّل تو",
+                hero_title: "معسكر <span class='gradient-text'>صانع المحتوى</span>", hero_desc: "تعلّم CapCut وCanva وكيف تخدم الذكاء الاصطناعي باش تنتج محتوى. مونتاج فيديو، تصميم، وإستراتيجية — من إعداد GrowthZone.",
+                hero_cta_register: "أنجم معانا", hero_cta_curriculum: "شوف البرنامج", hero_badge: "🎬 أماكن محدودة — الدفعة الجاية قريب",
+                curriculum_title: "البرنامج <span class='gradient-text'>المتكامل</span>", curriculum_sub: "3 تدريبات مكثّفة: مونتاج، تصميم، ومحتوى بالـ AI — كل وحدة وفيها مشروع تنجزه بنفسك.",
+                cc_1: "الوحدة 1: نكتشفو CapCut (الواجهة، مشروع جديد)", cc_2: "الوحدة 2: أساسيات المونتاج (التايملاين، قص ولصق)", cc_3: "الوحدة 3: نضيفو عناوين ونصوص متحركة", cc_4: "الوحدة 4: ترانزيشن ومؤثرات", cc_5: "الوحدة 5: الصوت (موسيقى، مؤثرات، تحكم في الحجم)", cc_6: "الوحدة 6: أدوات عملية (تنظيم الكليبات، التزامن)", cc_7: "الوحدة 7: الترجمة (تلقائية وتعديل)", cc_8: "الوحدة 8: تقنيات متقدّمة (تثبيت الفيديو، شاشة خضراء)", cc_9: "الوحدة 9: تصدير ونشر على وسائل التواصل", cc_final: "🎬 مشروع ختامي: فيديو كامل من A لـ Z",
+                cv_1: "الوحدة 1: نكتشفو Canva (حساب، واجهة، نماذج)", cv_2: "الوحدة 2: أساسيات التصميم (ألوان، خطوط، محاذاة)", cv_3: "الوحدة 3: أدوات Canva (عناصر، أشكال، صور، طبقات)", cv_4: "الوحدة 4: وسائل التواصل (منشور وستوري إنستغرام، بانر فيسبوك)", cv_5: "الوحدة 5: عروض تقديمية (شرائح، أنيماشن، ترانزيشن)", cv_6: "الوحدة 6: Canva AI (Magic Design، توليد صور، حذف الخلفية)", cv_final: "🎨 مشروع ختامي: بورتفوليو كامل (أفيش + منشور + ستوري + عرض 3 شرائح)",
+                ai_1: "الوحدة 1: بناء إستراتيجية المحتوى بالـ AI (تحديد أهدافك، ثيم)", ai_2: "الوحدة 2: فهم جمهورك (تحب شنو؟ كيفاش تجذبهم)", ai_3: "الوحدة 3: أسلوبك وهويتك (تميز وجذب الناس)", ai_4: "الوحدة 4: توليد أفكار بالـ AI (أركان المحتوى، كالاندر)", ai_5: "الوحدة 5: إنشاء المحتوى بالـ AI (سيناريوهات، منشورات، تكييف للمنصات)", ai_final: "🚀 مشروع ختامي: تحدد هويتك + 3 أركان + 10 أفكار + 1 سيناريو فيديو + 1 منشور كامل بـ Canva",
+                curriculum_note: "✨ كل تدريب فيه مشروع عملي وجلسة تغذية راجعة مع المدرّب",
+                audience_title: "لشكون هذي <span class='gradient-text'>الدورة؟</span>", audience_sub: "أي واحد ينجم يستفيد — مبتدئ أو عندو خبرة، المهم عندك شغف للإبداع.",
+                audience_card1_title: "📱 إللي يحب يصنع فيديوهات", audience_card1_desc: "تحب تنتج Reels وTikToks بمستوى احترافي بدون معدات غالية؟ CapCut + AI يكفوك.",
+                audience_card2_title: "🎨 الفريلانسر المبدع", audience_card2_desc: "تخدم على روحك وتحتاج تلقائي المحتوى وتصمم بسرعة؟ هذي الدورة تحل مشاكلك.",
+                audience_card3_title: "🧠 مدير صفحات ومجتمعات", audience_card3_desc: "زيد إنتاجيتك بالتخطيط بالـ AI، مونتاج خفيف، وتصاميم جاهزة.",
+                pricing_title: "شنو الباقة <span class='gradient-text'>اللي تناسبك؟</span>", pricing_sub: "الأسعار بالدينار التونسي (DT) — كل دورة عملية وشهادة معتمدة من GrowthZone",
+                track_capcut_desc: "مونتاج فيديو شامل: مؤثرات، ترجمة، شاشة خضراء، تصدير احترافي.", track_canva_desc: "تصميم جرافيك + ميزات Canva بالـ AI، مخصصة للسوشيال ميديا والعروض.", track_ia_desc: "إستراتيجية، سيناريوهات، تقويم محتوى باستخدام ChatGPT وأدوات الذكاء الاصطناعي.",
+                track_global_short: "🌟 الباقة الكاملة", track_global_desc: "CapCut + Canva + محتوى بالـ AI + kol les projets", track_global_save: "خصم 25% — kol les modules",
+                comp_title: "🏅 Compétition & récompenses", comp_desc: "قدّم مشروعك الختامي — فيديو، design ولا stratégie — واربح des prix de ouf! 🎁", reward1: "🥇 الأولى: kit montage pro + abonnement Canva Pro", reward2: "🥈 الثانية: ring light + micro + goodies", reward3: "شهادات للكل + mise en avant على growthzone.tn", partner_title: "تنظيم GrowthZone", partner_desc: "GrowthZone يوفّر coaches خبراء، espace créatif، وsuivi personnalisé لكل creator صغير.",
+                faq_title: "نعاونك <span class='gradient-text'>جاوبناك</span>", faq_sub: "كل شي تحب تعرفو عن الدورات، الأسعار، والمسابقة",
+                faq_q1: "نحتاج مواد ومعدات غاليين؟", faq_a1: "لا، كمبيوتر عادي ولا حتى تلفونة (لتطبيق CapCut) ينجم. Canva وأدوات الذكاء الاصطناعي كامل بالإنترنت.",
+                faq_q2: "التدوير حضوري ولا أونلاين؟", faq_a2: "هايبرد: تقدر تحضر عند GrowthZone ولا تتبع أونلاين مع متابعة شخصية.",
+                faq_q3: "بعد الدورة تنجم تاخو شهادة؟", faq_a3: "إي، شهادة رسمية موقّعة من GrowthZone، معترف بيها في المجال.",
+                faq_q4: "ننجم نخدم أكثر من pack؟", faq_a4: "Bien sûr! La pack complète تجمع CapCut، Canva و l'AI بخصم 25%.",
+                faq_q5: "توجد مسابقة في آخر الدورة؟", faq_a5: "إي، كل مشارك يقدّم مشروعه (فيديو، تصميم، ولا إستراتيجية). جوائز رائعة من GrowthZone.",
+                cta_title: "مستعد تبدع معانا؟", cta_desc: "انضم لمعسكر صانع المحتوى — blassa محدودة، mentors من GrowthZone، وprojets li tkafik.", cta_btn: "سجّل بلاصتك تو ←",
+                address: "Growth Zone، route Teniour km 1، Sfax", "start-date": "⏱️ من 15 جوان 2026", duration: "3 أسابيع دي créativité", "contact-info": "للمزيد d'infos", footer_text: "© 2026 Growth Zone — معسكرات صيفية للأطفال والشباب. Kol chay m7fouẓ."
+            }
+        };
+        let currentLang = 'en';
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if(translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
+            });
+            document.documentElement.lang = lang === 'ar' ? 'ar' : 'en';
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('lang-en').classList.toggle('bg-primary-500', lang === 'en');
+            document.getElementById('lang-en').classList.toggle('text-white', lang === 'en');
+            document.getElementById('lang-ar').classList.toggle('bg-primary-500', lang === 'ar');
+            document.getElementById('lang-ar').classList.toggle('text-white', lang === 'ar');
+        }
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+        document.getElementById('lang-ar').addEventListener('click', () => setLanguage('ar'));
+        setLanguage('en');
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const hash = this.getAttribute('href');
+                if(hash === '#') return;
+                if(hash && document.querySelector(hash)) { e.preventDefault(); document.querySelector(hash).scrollIntoView({ behavior: 'smooth' }); if(history.pushState) history.pushState(null, null, hash); }
+            });
+        });
+    </script>
+</body>
+</html>
