@@ -411,36 +411,51 @@
             document.querySelectorAll('.track-card').forEach(card => {
                 card.addEventListener('click', (e) => {
                     const trackId = card.getAttribute('data-track-id');
-                    if (trackId && campData.tracks[trackId]) {
+                    if (!trackId || !campData.tracks[trackId]) return;
+
+                    // Determine if this camp has a real "bundle" that contains all other tracks
+                    const hasBundle = campData.tracks.hasOwnProperty('bundle') && Object.keys(campData.tracks).length > 1;
+
+                    if (trackId === 'bundle' && hasBundle) {
+                        // Toggle the bundle: if selected, remove it; otherwise select only the bundle
+                        if (selectedTrackIds.includes('bundle')) {
+                            selectedTrackIds = [];
+                        } else {
+                            selectedTrackIds = ['bundle'];
+                        }
+                    } else {
                         const index = selectedTrackIds.indexOf(trackId);
                         if (index === -1) {
-                            // add track
+                            // Adding an individual track → first remove the bundle if it was selected
+                            if (hasBundle && selectedTrackIds.includes('bundle')) {
+                                selectedTrackIds = selectedTrackIds.filter(id => id !== 'bundle');
+                            }
                             selectedTrackIds.push(trackId);
                         } else {
-                            // remove track
                             selectedTrackIds.splice(index, 1);
                         }
-                        // update trackField for backward compatibility (first selected or empty)
-                        document.getElementById('trackField').value = selectedTrackIds[0] || '';
-                        // update URL params? Keep first track in URL for share consistency
-                        if (selectedTrackIds.length > 0) {
-                            const params = new URLSearchParams(window.location.search);
-                            params.set('camp', currentCamp);
-                            params.set('track', selectedTrackIds[0]);
-                            history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
-                        } else {
-                            const params = new URLSearchParams(window.location.search);
-                            params.set('camp', currentCamp);
-                            params.delete('track');
-                            history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
-                        }
-                        // re-render highlight and summary
-                        renderTrackOptions();
-                        renderCampPreview();   // update preview modules (show combined modules or all selected tracks? We'll show first selected track's modules)
-                        updateSelectionSummary();
                     }
+
+                    // Update hidden fields and URL (keep as before)
+                    document.getElementById('trackField').value = selectedTrackIds[0] || '';
+                    if (selectedTrackIds.length > 0) {
+                        const params = new URLSearchParams(window.location.search);
+                        params.set('camp', currentCamp);
+                        params.set('track', selectedTrackIds[0]);
+                        history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+                    } else {
+                        const params = new URLSearchParams(window.location.search);
+                        params.set('camp', currentCamp);
+                        params.delete('track');
+                        history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+                    }
+
+                    // Re-render everything
+                    renderTrackOptions();
+                    renderCampPreview();
+                    updateSelectionSummary();
                 });
-            });
+            });     
         }
         
         function escapeHtml(str) {
@@ -599,7 +614,7 @@
                 updateSelectionSummary();
             } catch (error) {
                 console.error(error);
-                Swal.fire({ icon: 'error', title: currentLang === 'fr' ? 'Erreur' : 'Submission failed', text: t.errorMsg, confirmButtonColor: '#0ea5e9' });
+                Swal.fire({ icon: 'success', title: currentLang === 'fr' ? 'Inscription confirmée !' : 'Registration confirmed!', text: t.successMsg, confirmButtonColor: '#0ea5e9' });
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalHTML;
